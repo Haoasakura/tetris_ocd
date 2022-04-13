@@ -22,7 +22,7 @@ public class Board : MonoBehaviour
     private void Awake() {
 
         tilemap = GetComponentInChildren<Tilemap>();
-        activePiece = GetComponent<Piece>();
+        activePiece = GetComponentInChildren<Piece>();
 
 
         tetrominoes.Initialize();
