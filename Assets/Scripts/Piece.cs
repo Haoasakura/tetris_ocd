@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Piece : MonoBehaviour {
     public Board board { get; private set; }
@@ -20,7 +21,7 @@ public class Piece : MonoBehaviour {
 
     [SerializeField] private float incrementStep = .1f;
     [SerializeField] private float incrementInterval = 5f;
-    private float incrementTime = 5f;
+    private float incrementTime = 0f;
 
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
         board = _board;
@@ -30,7 +31,6 @@ public class Piece : MonoBehaviour {
         stepTime = Time.time + stepDelay;
         moveTime = Time.time + moveDelay;
         lockTime = 0;
-        incrementTime=0;
 
         if (cells == null) {
             cells = new Vector3Int[data.cells.Length];
