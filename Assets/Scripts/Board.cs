@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Board : MonoBehaviour
-{
+public class Board : MonoBehaviour {
     private Tilemap tilemap;
     private Piece activePiece;
     [SerializeField] private Tetrominoes tetrominoes;
 
     [SerializeField] private Vector3Int spawnPosition;
-    [SerializeField] private Vector2Int boardSize = new Vector2Int(10,20);
+    public Vector2Int boardSize = new Vector2Int(10, 20);
 
     public RectInt Bounds {
         get {
-            Vector2Int position = new Vector2Int(-boardSize.x/2, -boardSize.y/2);
+            Vector2Int position = new Vector2Int(-boardSize.x / 2, -boardSize.y / 2);
             return new RectInt(position, boardSize);
         }
     }
@@ -27,18 +26,25 @@ public class Board : MonoBehaviour
 
         tetrominoes.Initialize();
     }
-    
+
     private void Start() {
         SpawnPiece();
     }
 
-    public void SpawnPiece () {
-        int random= Random.Range(0,tetrominoes.tetrominoesData.Length);
+    public void SpawnPiece() {
+        int random = Random.Range(0, tetrominoes.tetrominoesData.Length);
 
         TetrominoData data = tetrominoes.tetrominoesData[random];
 
-        activePiece.Initialize(this, spawnPosition , data);
+        activePiece.Initialize(this, spawnPosition, data);
+
+        if(IsValidPosition(activePiece, spawnPosition)) {
         SetPiece(activePiece);
+        }
+        else {
+            GameOver();
+        }
+
     }
 
     public void SetPiece(Piece piece) {
@@ -55,21 +61,68 @@ public class Board : MonoBehaviour
         }
     }
 
-    public bool IsValidPosition (Piece piece, Vector3Int position) {
+    public void ClearLines() {
+        int row = Bounds.yMin;
+
+        while (row < Bounds.yMax) {
+            if (IsLineFull(row)) {
+                LineClear(row);
+            } else {
+                row++;
+            }
+        }
+    }
+
+    private void LineClear(int row) {
+        for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
+
+            Vector3Int position = new Vector3Int(col, row);
+            tilemap.SetTile(position, null);
+        }
+
+        while (row < Bounds.yMax) {
+            for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
+
+                Vector3Int position = new Vector3Int(col, row+1);
+                TileBase above= tilemap.GetTile(position);
+
+                position = new Vector3Int(col, row);
+                tilemap.SetTile(position, above);
+            }
+            row++;
+        }
+    }
+
+    private void GameOver() {
+        tilemap.ClearAllTiles();
+    }
+
+    public bool IsValidPosition(Piece piece, Vector3Int position) {
         RectInt bounds = Bounds;
 
-        for (int i = 0; i <piece.cells.Length; i++) {
+        for (int i = 0; i < piece.cells.Length; i++) {
             Vector3Int tilePosition = piece.cells[i] + position;
 
-            if(!bounds.Contains((Vector2Int)tilePosition)) {
+            if (!bounds.Contains((Vector2Int)tilePosition)) {
                 return false;
             }
 
-            if(tilemap.HasTile(tilePosition)) {
+            if (tilemap.HasTile(tilePosition)) {
                 return false;
             }
         }
 
+        return true;
+    }
+
+    private bool IsLineFull(int row) {
+        for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
+            Vector3Int position = new Vector3Int(col, row);
+
+            if (!tilemap.HasTile(position)) {
+                return false;
+            }
+        }
         return true;
     }
 }
