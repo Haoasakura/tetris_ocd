@@ -11,6 +11,10 @@ public class Board : MonoBehaviour {
     [SerializeField] private Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(10, 20);
 
+    private int nextPiece;
+
+    [SerializeField] private string nextTetromino; //temp
+
     public RectInt Bounds {
         get {
             Vector2Int position = new Vector2Int(-boardSize.x / 2, -boardSize.y / 2);
@@ -28,20 +32,23 @@ public class Board : MonoBehaviour {
     }
 
     private void Start() {
+        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length);
+
         SpawnPiece();
     }
 
     public void SpawnPiece() {
-        int random = Random.Range(0, tetrominoes.tetrominoesData.Length);
+        int random = nextPiece;
+        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length);
 
         TetrominoData data = tetrominoes.tetrominoesData[random];
-
+        TetrominoData nextData = tetrominoes.tetrominoesData[nextPiece];
+        nextTetromino = nextData.tetromino.ToString();
         activePiece.Initialize(this, spawnPosition, data);
 
-        if(IsValidPosition(activePiece, spawnPosition)) {
-        SetPiece(activePiece);
-        }
-        else {
+        if (IsValidPosition(activePiece, spawnPosition)) {
+            SetPiece(activePiece);
+        } else {
             GameOver();
         }
 
@@ -83,8 +90,8 @@ public class Board : MonoBehaviour {
         while (row < Bounds.yMax) {
             for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
 
-                Vector3Int position = new Vector3Int(col, row+1);
-                TileBase above= tilemap.GetTile(position);
+                Vector3Int position = new Vector3Int(col, row + 1);
+                TileBase above = tilemap.GetTile(position);
 
                 position = new Vector3Int(col, row);
                 tilemap.SetTile(position, above);
