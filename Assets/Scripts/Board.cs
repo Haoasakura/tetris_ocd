@@ -14,11 +14,14 @@ public class Board : MonoBehaviour {
     private int nextPiece;
 
     [SerializeField] private string nextTetromino; //temp
+    [SerializeField] private int frozenRows = 0;
 
     public RectInt Bounds {
         get {
             Vector2Int position = new Vector2Int(-boardSize.x / 2, -boardSize.y / 2);
-            return new RectInt(position, boardSize);
+            RectInt r = new RectInt(position, boardSize);
+            r.yMin += frozenRows;
+            return r;
         }
     }
 
@@ -32,14 +35,13 @@ public class Board : MonoBehaviour {
     }
 
     private void Start() {
-        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length);
-
+        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length - 1);
         SpawnPiece();
     }
 
     public void SpawnPiece() {
         int random = nextPiece;
-        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length);
+        nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length - 1);
 
         TetrominoData data = tetrominoes.tetrominoesData[random];
         TetrominoData nextData = tetrominoes.tetrominoesData[nextPiece];
@@ -69,6 +71,7 @@ public class Board : MonoBehaviour {
     }
 
     public void ClearLines() {
+
         int row = Bounds.yMin;
 
         while (row < Bounds.yMax) {
@@ -81,6 +84,7 @@ public class Board : MonoBehaviour {
     }
 
     private void LineClear(int row) {
+
         for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
 
             Vector3Int position = new Vector3Int(col, row);
@@ -102,15 +106,16 @@ public class Board : MonoBehaviour {
 
     private void GameOver() {
         tilemap.ClearAllTiles();
+        frozenRows = 0;
+        activePiece.stepDelay = activePiece.initialStepDelay;
     }
 
     public bool IsValidPosition(Piece piece, Vector3Int position) {
-        RectInt bounds = Bounds;
 
         for (int i = 0; i < piece.cells.Length; i++) {
             Vector3Int tilePosition = piece.cells[i] + position;
 
-            if (!bounds.Contains((Vector2Int)tilePosition)) {
+            if (!Bounds.Contains((Vector2Int)tilePosition)) {
                 return false;
             }
 
@@ -123,6 +128,7 @@ public class Board : MonoBehaviour {
     }
 
     private bool IsLineFull(int row) {
+
         for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
             Vector3Int position = new Vector3Int(col, row);
 
@@ -132,4 +138,21 @@ public class Board : MonoBehaviour {
         }
         return true;
     }
+
+    public void Freeze(int rowsToFreeze) {
+        frozenRows += rowsToFreeze;
+
+
+        for (int i = Bounds.yMin - frozenRows; i < Bounds.yMin; i++) {
+            for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
+                Vector3Int position = new Vector3Int(col, i);
+
+                tilemap.SetTile(position, tetrominoes.tetrominoesData[tetrominoes.tetrominoesData.Length - 1].tile);
+
+            }
+        }
+
+    }
+
+
 }

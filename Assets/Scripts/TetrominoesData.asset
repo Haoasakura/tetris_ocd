@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: TetrominoesData
   m_EditorClassIdentifier: 
   tetrominoesData:
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 0
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 1
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 2
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 3
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 4
-  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 5
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 6
   - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
     tetromino: 6

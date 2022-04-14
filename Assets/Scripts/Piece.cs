@@ -10,7 +10,9 @@ public class Piece : MonoBehaviour {
 
     private int rotationIdx;
 
-    [SerializeField] private float stepDelay = 1f;
+    public float initialStepDelay=1f;
+
+    public float stepDelay = 1f;
     [SerializeField] private float moveDelay = .1f;
     [SerializeField] private float lockDelay = .5f;
 
