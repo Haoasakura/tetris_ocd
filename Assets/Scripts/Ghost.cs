@@ -48,7 +48,7 @@ public class Ghost : MonoBehaviour {
         for (int row = current; row >= bottom; row--) {
             _position.y = row;
 
-            if (mainBoard.IsValidPosition(trackingPiece, _position)) {
+            if (mainBoard.IsValidPositionC(trackingPiece, _position)) {
                 position = _position;
             } else {
                 break;

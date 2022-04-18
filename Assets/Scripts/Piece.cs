@@ -10,7 +10,7 @@ public class Piece : MonoBehaviour {
 
     private int rotationIdx;
 
-    public float initialStepDelay=1f;
+    public float initialStepDelay = 1f;
 
     public float stepDelay = 1f;
     [SerializeField] private float moveDelay = .1f;
@@ -24,7 +24,15 @@ public class Piece : MonoBehaviour {
     [SerializeField] private float incrementInterval = 5f;
     private float incrementTime = 0f;
 
+    [SerializeField] GameObject aPiece;
+
+    public Transform tilesParent;
+    public GameObject pieceRef;
+    private int namecount = 0;
+
+
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
+
         board = _board;
         position = _position;
         data = _data;
@@ -40,6 +48,12 @@ public class Piece : MonoBehaviour {
         for (int i = 0; i < cells.Length; i++) {
             cells[i] = (Vector3Int)data.cells[i];
         }
+        pieceRef = Instantiate(aPiece, position, Quaternion.identity, tilesParent);
+        pieceRef.name += namecount++;
+        for (int i = 0; i < cells.Length; i++) {
+            pieceRef.transform.GetChild(i).position = position + cells[i] + new Vector3(0.5f, 0.5f);
+        }
+
     }
 
     private void Update() {
@@ -67,10 +81,15 @@ public class Piece : MonoBehaviour {
             Step();
         }
 
-        if(incrementTime >= incrementInterval) {
-            stepDelay = Mathf.Max(0.1f, stepDelay-incrementStep);
-            incrementTime=0;
+        if (incrementTime >= incrementInterval) {
+            stepDelay = Mathf.Max(0.1f, stepDelay - incrementStep);
+            incrementTime = 0;
         }
+
+        // pieceRef.transform.localPosition = position;
+        // for (int i = 0; i < cells.Length; i++) {
+        //     pieceRef.transform.GetChild(i).localPosition = cells[i] + new Vector3(0.5f, 0.5f);
+        // }
 
         board.SetPiece(this);
     }
@@ -96,8 +115,8 @@ public class Piece : MonoBehaviour {
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        bool isValid = board.IsValidPosition(this, newPosition);
-
+        // bool isValid = board.IsValidPosition(this, newPosition);
+        bool isValid = board.IsValidPositionC(this, newPosition);
         if (isValid) {
             position = newPosition;
             moveTime = Time.time + moveDelay;
@@ -117,6 +136,7 @@ public class Piece : MonoBehaviour {
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
+
     }
 
     private void Step() {
@@ -152,9 +172,13 @@ public class Piece : MonoBehaviour {
     }
 
     private void ApplyRotationMatrix(int direction) {
+        // Vector3 cel = pieceRef.transform.position + Vector3.one / 2;
+
         for (int i = 0; i < cells.Length; i++) {
+            Transform c = pieceRef.transform.GetChild(i);
             Vector3 cell = cells[i];
             int x, y;
+            // float xf, yf;
             switch (data.tetromino) {
                 case Tetromino.I:
                 case Tetromino.O:
@@ -162,20 +186,51 @@ public class Piece : MonoBehaviour {
                     cell.y -= .5f;
                     x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
                     y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+
+                    // c.parent = null;
+                    // c.RotateAround(cel, Vector3.forward, 45f);
+                    // c.parent = pieceRef.transform;
+                    // c.SetSiblingIndex(i);
+                    // pieceRef.transform.GetChild(i).RotateAround(cel, Vector3.forward, 45);
+                    // xf = pieceRef.transform.GetChild(i).localPosition.x;
+                    // yf = pieceRef.transform.GetChild(i).localPosition.y;
                     break;
                 default:
                     x = Mathf.RoundToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
                     y = Mathf.RoundToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+                    // xf = (cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * (direction / 2));
+                    // yf = (cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * (direction / 2));
+                    // c.parent = null;
+                    // c.RotateAround((cel+Vector3.one/2), Vector3.forward, 45f);
+                    // c.parent = pieceRef.transform;
+                    // c.SetSiblingIndex(i);
+                    // pieceRef.transform.GetChild(i).RotateAround(cel, Vector3.forward, 45);
+                    // xf = pieceRef.transform.GetChild(i).localPosition.x;
+                    // yf = pieceRef.transform.GetChild(i).localPosition.y;
                     break;
             }
             cells[i] = new Vector3Int(x, y);
+            // cellsF[i] = new Vector3(xf, yf);
         }
     }
 
     private void Lock() {
+        // pieceRef.transform.localPosition = position;
+        pieceRef.layer = LayerMask.NameToLayer("Placed");
+        for (int i = 0; i < cells.Length; i++) {
+            pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
+        }
         board.SetPiece(this);
+
+        // for (int i = 0; i < cells.Length; i++) {
+        //     pieceRef.transform.GetChild(i).position = position + cells[i] + new Vector3(0.5f, 0.5f);
+        // }
+
+        pieceRef=null;
         board.ClearLines();
+
         board.SpawnPiece();
+
     }
 
     private void HardDrop() {
@@ -183,6 +238,12 @@ public class Piece : MonoBehaviour {
             continue;
         }
         Lock();
+    }
+
+    public void Reset() {
+        for (int i = tilesParent.childCount - 2; i >= 0; i--) {
+            Destroy(tilesParent.GetChild(i).gameObject);
+        }
     }
 
 
