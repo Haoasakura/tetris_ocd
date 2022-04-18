@@ -57,6 +57,7 @@ public class Piece : MonoBehaviour {
     }
 
     private void Update() {
+
         board.ClearPiece(this);
 
         lockTime += Time.deltaTime;
@@ -76,7 +77,6 @@ public class Piece : MonoBehaviour {
             HandleMoveInputs();
         }
 
-
         if (Time.time >= stepTime) {
             Step();
         }
@@ -86,10 +86,10 @@ public class Piece : MonoBehaviour {
             incrementTime = 0;
         }
 
-        // pieceRef.transform.localPosition = position;
-        // for (int i = 0; i < cells.Length; i++) {
-        //     pieceRef.transform.GetChild(i).localPosition = cells[i] + new Vector3(0.5f, 0.5f);
-        // }
+        // // pieceRef.transform.localPosition = position;
+        // // for (int i = 0; i < cells.Length; i++) {
+        // //     pieceRef.transform.GetChild(i).localPosition = cells[i] + new Vector3(0.5f, 0.5f);
+        // // }
 
         board.SetPiece(this);
     }
@@ -115,7 +115,6 @@ public class Piece : MonoBehaviour {
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        // bool isValid = board.IsValidPosition(this, newPosition);
         bool isValid = board.IsValidPositionC(this, newPosition);
         if (isValid) {
             position = newPosition;
@@ -136,7 +135,6 @@ public class Piece : MonoBehaviour {
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
-
     }
 
     private void Step() {
@@ -210,33 +208,26 @@ public class Piece : MonoBehaviour {
                     break;
             }
             cells[i] = new Vector3Int(x, y);
-            // cellsF[i] = new Vector3(xf, yf);
         }
     }
 
     private void Lock() {
-        // pieceRef.transform.localPosition = position;
+
         pieceRef.layer = LayerMask.NameToLayer("Placed");
         for (int i = 0; i < cells.Length; i++) {
             pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
         }
+
         board.SetPiece(this);
-
-        // for (int i = 0; i < cells.Length; i++) {
-        //     pieceRef.transform.GetChild(i).position = position + cells[i] + new Vector3(0.5f, 0.5f);
-        // }
-
-        pieceRef=null;
         board.ClearLines();
-
         board.SpawnPiece();
-
     }
 
     private void HardDrop() {
         while (Move(Vector2Int.down)) {
             continue;
         }
+        
         Lock();
     }
 

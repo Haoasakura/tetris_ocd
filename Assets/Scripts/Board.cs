@@ -17,7 +17,6 @@ public class Board : MonoBehaviour {
     [SerializeField] private string nextTetromino; //temp
     [SerializeField] private int frozenRows = 0;
 
-    [SerializeField] private Vector3[] positionToTest = new Vector3[4];
     public LayerMask layerMask;
 
     private Transform[,] grid = new Transform[10, 20];
@@ -76,21 +75,6 @@ public class Board : MonoBehaviour {
     }
 
     public void UpdateGrid() {
-        // Transform subBlock=null;
-        // for (int i = 0; i < activePiece.cells.Length; i++) {
-        //     Vector3Int tileOldPosition = activePiece.cells[i] + activePiece.oldPosition;
-
-        //     Vector2Int gridOldPos = (Vector2Int)tileOldPosition + gridOffset;
-        //     subBlock=grid[gridOldPos.x, gridOldPos.y];
-        //     grid[gridOldPos.x, gridOldPos.y] = null;
-        // }
-        // for (int i = 0; i < activePiece.cells.Length; i++) {
-        //     Vector3Int tileNewPosition = activePiece.cells[i] +  activePiece.position;
-
-        //     Vector2Int gridNewPos = (Vector2Int)tileNewPosition + gridOffset;
-        //     grid[gridNewPos.x, gridNewPos.y] = subBlock;
-        // }
-
         for (int row = 0; row < grid.GetLength(0); row++) {
             for (int col = 0; col < grid.GetLength(1); col++) {
                 Vector2 pos = new Vector2(row, col) - gridOffset + new Vector2(.5f, .5f);
@@ -115,8 +99,6 @@ public class Board : MonoBehaviour {
             grid[gridNewPos.x, gridNewPos.y] = piece.pieceRef.transform.GetChild(i);
             grid[gridNewPos.x, gridNewPos.y].localPosition = piece.cells[i] + new Vector3(0.5f, 0.5f);
         }
-
-        // UpdateGrid();
     }
 
     public void ClearPiece(Piece piece) {
@@ -125,7 +107,6 @@ public class Board : MonoBehaviour {
             Vector2Int gridNewPos = (Vector2Int)tilePosition + gridOffset;
             grid[gridNewPos.x, gridNewPos.y] = null;
         }
-        // UpdateGrid();
     }
 
     public void ClearLines() {
@@ -142,7 +123,6 @@ public class Board : MonoBehaviour {
     }
 
     private void LineClear(int row) {
-        print("Line Clear " + row);
 
         for (int col = 0; col < grid.GetLength(0); col++) {
             if (grid[col, row] != null) {
@@ -161,7 +141,6 @@ public class Board : MonoBehaviour {
             }
             row++;
         }
-
     }
 
     private void GameOver() {
@@ -186,29 +165,10 @@ public class Board : MonoBehaviour {
             }
         }
 
-        // for (int i = 0; i < piece.cells.Length; i++) {
-        //     Vector3Int tilePosition = piece.cells[i] + position;
-
-        //     if (!Bounds.Contains((Vector2Int)tilePosition)) {
-        //         return false;
-        //     }
-
-        //     if (tilemap.HasTile(tilePosition)) {
-        //         return false;
-        //     }
-
-        // }
-
         return true;
     }
 
     public bool IsValidPositionC(Piece piece, Vector3Int position) {
-
-        for (int i = 0; i < piece.cells.Length; i++) {
-            Vector3 tilePosition = piece.cells[i] + position;
-            tilePosition += new Vector3(.5f, .5f);
-            positionToTest[i] = tilePosition;
-        }
 
         for (int i = 0; i < piece.cells.Length; i++) {
             Vector3 tilePosition = piece.cells[i] + position;
@@ -248,7 +208,6 @@ public class Board : MonoBehaviour {
     public void Freeze(int rowsToFreeze) {
         frozenRows += rowsToFreeze;
 
-
         for (int i = Bounds.yMin - frozenRows; i < Bounds.yMin; i++) {
             for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
                 Vector3Int position = new Vector3Int(col, i);
@@ -256,13 +215,10 @@ public class Board : MonoBehaviour {
                 tilemap.SetTile(position, tetrominoes.tetrominoesData[tetrominoes.tetrominoesData.Length - 1].tile);
             }
         }
-
     }
 
     private void OnDrawGizmosSelected() {
-        // for (int i = 0; i < 4; i++) {
-        //     Gizmos.DrawCube(positionToTest[i], Vector3.one);
-        // }
+
         for (int row = 0; row < grid.GetLength(0); row++) {
             for (int col = 0; col < grid.GetLength(1); col++) {
                 if (grid[row, col] != null) {
@@ -271,10 +227,8 @@ public class Board : MonoBehaviour {
                     Gizmos.color = Color.red;
                 }
                 Gizmos.DrawCube(new Vector3(row - 4.5f, col - 9.5f), new Vector2(.9f, .9f));
-
             }
         }
-
     }
 
     // private void OnDrawGizmos() {
