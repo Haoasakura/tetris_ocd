@@ -30,6 +30,9 @@ public class Piece : MonoBehaviour {
     public GameObject pieceRef;
     private int namecount = 0;
 
+    public Vector3 gridAlignOffset = new Vector3(.5f,.5f,0f);
+
+    [SerializeField, Range(0,360)] private int rotateDegree=90;
 
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
@@ -48,10 +51,11 @@ public class Piece : MonoBehaviour {
         for (int i = 0; i < cells.Length; i++) {
             cells[i] = (Vector3Int)data.cells[i];
         }
-        pieceRef = Instantiate(aPiece, position, Quaternion.identity, tilesParent);
+
+        pieceRef = Instantiate(data.tetrominoGO, position, Quaternion.identity, tilesParent);
         pieceRef.name += namecount++;
         for (int i = 0; i < cells.Length; i++) {
-            pieceRef.transform.GetChild(i).position = position + cells[i] + new Vector3(0.5f, 0.5f);
+            pieceRef.transform.GetChild(i).position = position + cells[i] + gridAlignOffset;
         }
 
     }
@@ -85,11 +89,6 @@ public class Piece : MonoBehaviour {
             stepDelay = Mathf.Max(0.1f, stepDelay - incrementStep);
             incrementTime = 0;
         }
-
-        // // pieceRef.transform.localPosition = position;
-        // // for (int i = 0; i < cells.Length; i++) {
-        // //     pieceRef.transform.GetChild(i).localPosition = cells[i] + new Vector3(0.5f, 0.5f);
-        // // }
 
         board.SetPiece(this);
     }
@@ -170,7 +169,7 @@ public class Piece : MonoBehaviour {
     }
 
     private void ApplyRotationMatrix(int direction) {
-        // Vector3 cel = pieceRef.transform.position + Vector3.one / 2;
+        Vector3 pivot = pieceRef.transform.position + gridAlignOffset;
 
         for (int i = 0; i < cells.Length; i++) {
             Transform c = pieceRef.transform.GetChild(i);
@@ -184,25 +183,14 @@ public class Piece : MonoBehaviour {
                     cell.y -= .5f;
                     x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
                     y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
-
-                    // c.parent = null;
-                    // c.RotateAround(cel, Vector3.forward, 45f);
-                    // c.parent = pieceRef.transform;
-                    // c.SetSiblingIndex(i);
-                    // pieceRef.transform.GetChild(i).RotateAround(cel, Vector3.forward, 45);
+                    c.RotateAround((pivot+gridAlignOffset)/*new Vector3(cel.x + .5f, cel.y + .5f)*/, Vector3.forward, direction * -rotateDegree);
                     // xf = pieceRef.transform.GetChild(i).localPosition.x;
                     // yf = pieceRef.transform.GetChild(i).localPosition.y;
                     break;
                 default:
                     x = Mathf.RoundToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
                     y = Mathf.RoundToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
-                    // xf = (cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * (direction / 2));
-                    // yf = (cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * (direction / 2));
-                    // c.parent = null;
-                    // c.RotateAround((cel+Vector3.one/2), Vector3.forward, 45f);
-                    // c.parent = pieceRef.transform;
-                    // c.SetSiblingIndex(i);
-                    // pieceRef.transform.GetChild(i).RotateAround(cel, Vector3.forward, 45);
+                    c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
                     // xf = pieceRef.transform.GetChild(i).localPosition.x;
                     // yf = pieceRef.transform.GetChild(i).localPosition.y;
                     break;
@@ -227,7 +215,7 @@ public class Piece : MonoBehaviour {
         while (Move(Vector2Int.down)) {
             continue;
         }
-        
+
         Lock();
     }
 

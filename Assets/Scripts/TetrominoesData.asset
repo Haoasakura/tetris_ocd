@@ -15,17 +15,25 @@ MonoBehaviour:
   tetrominoesData:
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 0
+    tetrominoGO: {fileID: 1395682672517734185, guid: 80fed523a0357af4393a2a41313e759d, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 1
+    tetrominoGO: {fileID: 6033270926413170746, guid: 254c95ee978d20045a9927433cae7d1c, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 2
+    tetrominoGO: {fileID: 1586917523012201646, guid: 947d3a73c612d03478133bbd6bceef0b, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 3
+    tetrominoGO: {fileID: 376461720067576443, guid: 44c1316bc4434ed409a3b8968efa88da, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 4
+    tetrominoGO: {fileID: 8691462603339908556, guid: 3de987cb1400a624292d891858aa6e43, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 5
+    tetrominoGO: {fileID: 1984633637950724016, guid: a353d2fa581bca1419ad4376b9734795, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 6
+    tetrominoGO: {fileID: 1490098109481637141, guid: 753b9caa8f78ab7468fbccbd8b311909, type: 3}
   - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
     tetromino: 6
+    tetrominoGO: {fileID: 0}

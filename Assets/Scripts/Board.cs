@@ -10,6 +10,8 @@ public class Board : MonoBehaviour {
     [SerializeField] private Tetrominoes tetrominoes;
 
     [SerializeField] private Vector3Int spawnPosition;
+
+    [SerializeField] private Vector2Int size = new Vector2Int(10, 20);
     public Vector2Int boardSize = new Vector2Int(10, 20);
 
     private int nextPiece;
@@ -33,6 +35,9 @@ public class Board : MonoBehaviour {
 
 
     private void Awake() {
+
+        boardSize = size;
+        grid = new Transform[size.x, size.y];
 
         tilemap = GetComponentInChildren<Tilemap>();
         activePiece = GetComponentInChildren<Piece>();
@@ -93,18 +98,21 @@ public class Board : MonoBehaviour {
         piece.pieceRef.transform.localPosition = piece.position;
 
         for (int i = 0; i < piece.cells.Length; i++) {
-            Vector3Int tileNewPosition = piece.cells[i] + piece.position;
-
+            // Vector3Int tileNewPosition = piece.cells[i] + piece.position;
+            Vector3Int tileNewPosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + piece.position - piece.gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tileNewPosition + gridOffset;
+
             grid[gridNewPos.x, gridNewPos.y] = piece.pieceRef.transform.GetChild(i);
-            grid[gridNewPos.x, gridNewPos.y].localPosition = piece.cells[i] + new Vector3(0.5f, 0.5f);
+            // grid[gridNewPos.x, gridNewPos.y].localPosition = piece.cells[i] + new Vector3(0.5f, 0.5f);
         }
     }
 
     public void ClearPiece(Piece piece) {
         for (int i = 0; i < piece.cells.Length; i++) {
-            Vector3Int tilePosition = piece.cells[i] + piece.position;
+            // Vector3Int tilePosition = piece.cells[i] + piece.position;
+            Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + piece.position - piece.gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tilePosition + gridOffset;
+
             grid[gridNewPos.x, gridNewPos.y] = null;
         }
     }
@@ -150,37 +158,38 @@ public class Board : MonoBehaviour {
         activePiece.Reset();
     }
 
-    public bool IsValidPositionB(Piece piece) {
+    // public bool IsValidPositionB(Piece piece) {
 
-        for (int row = Bounds.yMin; row < Bounds.yMax; row++) {
-            for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
-                Vector3 position = new Vector3Int(col, row) + new Vector3(.5f, -.5f);
+    //     for (int row = Bounds.yMin; row < Bounds.yMax; row++) {
+    //         for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
+    //             Vector3 position = new Vector3Int(col, row) + new Vector3(.5f, -.5f);
 
-                Collider2D coll = Physics2D.OverlapBox(position, new Vector2(.95f, .9f), 0f);
-                if (coll != null)
-                    print(position + " HIT");
-                else
-                    print(position + " MISS");
+    //             Collider2D coll = Physics2D.OverlapBox(position, new Vector2(.95f, .9f), 0f);
+    //             if (coll != null)
+    //                 print(position + " HIT");
+    //             else
+    //                 print(position + " MISS");
 
-            }
-        }
+    //         }
+    //     }
 
-        return true;
-    }
+    //     return true;
+    // }
 
     public bool IsValidPositionC(Piece piece, Vector3Int position) {
 
         for (int i = 0; i < piece.cells.Length; i++) {
-            Vector3 tilePosition = piece.cells[i] + position;
+            // Vector3 tilePosition = piece.cells[i] + position;
+            // Vector3Int tilePositionInt = piece.cells[i] + position;
+            Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + position - piece.gridAlignOffset);
 
-            Vector3Int tilePositionInt = piece.cells[i] + position;
-            if (!Bounds.Contains((Vector2Int)tilePositionInt)) {
+            if (!Bounds.Contains((Vector2Int)tilePosition)) {
                 return false;
             }
-            Vector3Int gridNewPos = tilePositionInt + (Vector3Int)gridOffset;
+            Vector3Int gridNewPos = tilePosition + (Vector3Int)gridOffset;
             if (grid[gridNewPos.x, gridNewPos.y] != null)
                 return false;
-                
+
             // tilePosition += new Vector3(.5f, .5f);
 
             // List<Collider2D> colls = new List<Collider2D>();
