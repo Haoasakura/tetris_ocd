@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2425ff8e6595649b6735df07d02494, type: 3}
+  m_Name: TetrominoesData 4x4
+  m_EditorClassIdentifier: 
+  tetrominoesData:
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 0
+    tetrominoGO: {fileID: 8044903930172599583, guid: 8d6c0898a6ab2c0409d0609ca9dcaa1f, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 1
+    tetrominoGO: {fileID: 6625351320986872514, guid: d3deecb7208d78b488bd6908a34295be, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 2
+    tetrominoGO: {fileID: 2408096819834322447, guid: 76beb833cb599e14b89ce527dc400920, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 3
+    tetrominoGO: {fileID: 797237865574421885, guid: bb56fc7617c7d9f48bcf61002c68dede, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 4
+    tetrominoGO: {fileID: 2350977070860460539, guid: 7a96f3b810383ce48bedf70e18b8bb41, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 5
+    tetrominoGO: {fileID: 2933173427553296400, guid: f5feff735f4959547b970762d9c5607d, type: 3}
+  - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
+    tetromino: 6
+    tetrominoGO: {fileID: 1215999802144340832, guid: 75c0291da0480dd4db7a249ec3d87c5a, type: 3}
+  - tile: {fileID: 11400000, guid: 3bbdf5c598f51a3499524018aac131ec, type: 2}
+    tetromino: 6
+    tetrominoGO: {fileID: 0}

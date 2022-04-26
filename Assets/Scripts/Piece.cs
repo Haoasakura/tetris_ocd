@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Piece : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class Piece : MonoBehaviour
     public List<Vector2Int> occupiedCells = new List<Vector2Int>();
 
 
+    public TMP_Text rotationText;
+
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
         board = _board;
@@ -68,10 +72,10 @@ public class Piece : MonoBehaviour
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKey(KeyCode.Q) && Time.time > moveTime) {
             Rotate(-1);
         }
-        else if (Input.GetKeyDown(KeyCode.E)) {
+        else if (Input.GetKey(KeyCode.E) && Time.time > moveTime) {
             Rotate(1);
         }
 
@@ -93,6 +97,8 @@ public class Piece : MonoBehaviour
         }
 
         board.SetPiece(this);
+
+        UpdateUI();
     }
 
 
@@ -334,10 +340,14 @@ public class Piece : MonoBehaviour
         return true;
     }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.blue;
-        foreach (var c in occupiedCells) {
-            Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
-        }
+    private void UpdateUI() {
+        rotationText.text = (int)pieceRef.transform.GetChild(0).eulerAngles.z + "°";
     }
+
+    //private void OnDrawGizmosSelected() {
+    //    Gizmos.color = Color.blue;
+    //    foreach (var c in occupiedCells) {
+    //        Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
+    //    }
+    //}
 }
