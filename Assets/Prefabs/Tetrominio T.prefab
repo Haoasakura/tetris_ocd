@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3469310371466538138}
   - component: {fileID: 4596799574642737299}
   - component: {fileID: 3295103813343548900}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d990178d5d29b594fbe50f8d091cd4b9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8174672, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7461866321833800976}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tetrominio T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 5476214409321056559}
   - component: {fileID: 3730573834983493063}
   - component: {fileID: 152815521031497205}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d990178d5d29b594fbe50f8d091cd4b9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8174672, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4736295412914154631}
   - component: {fileID: 4759138024614738343}
   - component: {fileID: 1586696912496703868}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d990178d5d29b594fbe50f8d091cd4b9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8174672, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 8217817321962537652}
   - component: {fileID: 7119575278799478944}
   - component: {fileID: 1887459533564780322}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d990178d5d29b594fbe50f8d091cd4b9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.8174672, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

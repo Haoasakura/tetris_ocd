@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Board : MonoBehaviour {
+public class Board : MonoBehaviour
+{
     private Tilemap tilemap;
     private Piece activePiece;
 
@@ -21,8 +22,8 @@ public class Board : MonoBehaviour {
 
     public LayerMask layerMask;
 
-    private Transform[,] grid = new Transform[10, 20];
-    private Vector2Int gridOffset;
+    public Transform[,] grid = new Transform[10, 20];
+    [SerializeField] public Vector2Int gridOffset;
 
     public RectInt Bounds {
         get {
@@ -58,10 +59,6 @@ public class Board : MonoBehaviour {
         SpawnPiece();
     }
 
-    private void LateUpdate() {
-        // UpdateGrid();
-    }
-
     public void SpawnPiece() {
         int random = nextPiece;
         nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length - 1);
@@ -71,49 +68,64 @@ public class Board : MonoBehaviour {
         nextTetromino = nextData.tetromino.ToString();
         activePiece.Initialize(this, spawnPosition, data);
 
-        if (IsValidPositionC(activePiece, spawnPosition)) {
+        if (IsValidPosition(activePiece, spawnPosition, Vector2Int.zero)) {
             SetPiece(activePiece);
-        } else {
-            GameOver();
         }
-
-    }
-
-    public void UpdateGrid() {
-        for (int row = 0; row < grid.GetLength(0); row++) {
-            for (int col = 0; col < grid.GetLength(1); col++) {
-                Vector2 pos = new Vector2(row, col) - gridOffset + new Vector2(.5f, .5f);
-
-                Collider2D coll = Physics2D.OverlapBox(pos, new Vector2(.95f, .95f), 0f);
-                if (coll != null)
-                    grid[row, col] = coll.transform;
-                else
-                    grid[row, col] = null;
-            }
+        else {
+            GameOver();
         }
     }
 
     public void SetPiece(Piece piece) {
-
-        piece.pieceRef.transform.localPosition = piece.position;
-
-        for (int i = 0; i < piece.cells.Length; i++) {
-            // Vector3Int tileNewPosition = piece.cells[i] + piece.position;
-            Vector3Int tileNewPosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + piece.position - piece.gridAlignOffset);
+        activePiece.occupiedCells.Clear();
+        piece.pieceRef.transform.position = piece.position;
+        for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
+            Vector3Int tileNewPosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).position - piece.gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tileNewPosition + gridOffset;
 
-            grid[gridNewPos.x, gridNewPos.y] = piece.pieceRef.transform.GetChild(i);
-            // grid[gridNewPos.x, gridNewPos.y].localPosition = piece.cells[i] + new Vector3(0.5f, 0.5f);
+            SetGridPiece(gridNewPos, piece.pieceRef.transform.GetChild(i), (piece.pieceRef.transform.GetChild(i).position), piece.pieceRef.transform.GetChild(i).GetComponent<BoxCollider2D>().size);
+        }
+    }
+
+    public void SetGridPiece(Vector2Int centerPosition, Transform subPiece, Vector3 position, Vector2 size) {
+        int minX = Mathf.Max(0, centerPosition.x - 1);
+        int maxX = Mathf.Min(grid.GetLength(0), centerPosition.x + 2);
+        int minY = Mathf.Max(0, centerPosition.y - 1);
+        int maxY = Mathf.Min(grid.GetLength(1), centerPosition.y + 2);
+        for (int row = minX; row < maxX; row++) {
+            for (int col = minY; col < maxY; col++) {
+                Vector2 pos = new Vector2(row, col) - gridOffset + new Vector2(.5f, .5f);
+
+                Bounds b1 = new Bounds(pos, new Vector2(.95f, .95f));
+                Bounds b2 = new Bounds(position, size);
+
+                if (b1.Intersects(b2)) {
+                    grid[row, col] = subPiece;
+                    if (!activePiece.occupiedCells.Contains(new Vector2Int(row, col)))
+                        activePiece.occupiedCells.Add(new Vector2Int(row, col));
+                }
+            }
         }
     }
 
     public void ClearPiece(Piece piece) {
-        for (int i = 0; i < piece.cells.Length; i++) {
-            // Vector3Int tilePosition = piece.cells[i] + piece.position;
-            Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + piece.position - piece.gridAlignOffset);
+        for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
+            Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).position - piece.gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tilePosition + gridOffset;
 
-            grid[gridNewPos.x, gridNewPos.y] = null;
+            ClearGridPiece(gridNewPos, piece.pieceRef.transform.GetChild(i));
+        }
+    }
+    public void ClearGridPiece(Vector2Int centerPosition, Transform subPiece) {
+        int minX = Mathf.Max(0, centerPosition.x - 1);
+        int maxX = Mathf.Min(grid.GetLength(0), centerPosition.x + 2);
+        int minY = Mathf.Max(0, centerPosition.y - 1);
+        int maxY = Mathf.Min(grid.GetLength(1), centerPosition.y + 2);
+        for (int row = minX; row < maxX; row++) {
+            for (int col = minY; col < maxY; col++) {
+                if (grid[row, col] != null && grid[row, col].gameObject.name == subPiece.gameObject.name)
+                    grid[row, col] = null;
+            }
         }
     }
 
@@ -124,7 +136,8 @@ public class Board : MonoBehaviour {
         while (row < grid.GetLength(1)) {
             if (IsLineFull(row)) {
                 LineClear(row);
-            } else {
+            }
+            else {
                 row++;
             }
         }
@@ -158,48 +171,30 @@ public class Board : MonoBehaviour {
         activePiece.Reset();
     }
 
-    // public bool IsValidPositionB(Piece piece) {
+    public bool IsValidPosition(Piece piece, Vector3Int position, Vector2Int translation) {
 
-    //     for (int row = Bounds.yMin; row < Bounds.yMax; row++) {
-    //         for (int col = Bounds.xMin; col < Bounds.xMax; col++) {
-    //             Vector3 position = new Vector3Int(col, row) + new Vector3(.5f, -.5f);
+        for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
 
-    //             Collider2D coll = Physics2D.OverlapBox(position, new Vector2(.95f, .9f), 0f);
-    //             if (coll != null)
-    //                 print(position + " HIT");
-    //             else
-    //                 print(position + " MISS");
-
-    //         }
-    //     }
-
-    //     return true;
-    // }
-
-    public bool IsValidPositionC(Piece piece, Vector3Int position) {
-
-        for (int i = 0; i < piece.cells.Length; i++) {
-            // Vector3 tilePosition = piece.cells[i] + position;
-            // Vector3Int tilePositionInt = piece.cells[i] + position;
             Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + position - piece.gridAlignOffset);
 
             if (!Bounds.Contains((Vector2Int)tilePosition)) {
                 return false;
             }
-            Vector3Int gridNewPos = tilePosition + (Vector3Int)gridOffset;
-            if (grid[gridNewPos.x, gridNewPos.y] != null)
+        }
+
+        foreach (Vector2Int pos in piece.occupiedCells) {
+
+            Vector3Int tilePosition = new Vector3Int(pos.x + translation.x - gridOffset.x, pos.y + translation.y - gridOffset.y);
+
+            if (!Bounds.Contains((Vector2Int)tilePosition)) {
+                return false;
+            }
+
+            Vector2Int gridNewPos = pos + translation;
+
+            if (grid[gridNewPos.x, gridNewPos.y] != null && grid[gridNewPos.x, gridNewPos.y].gameObject.layer != LayerMask.NameToLayer("Moving"))
                 return false;
 
-            // tilePosition += new Vector3(.5f, .5f);
-
-            // List<Collider2D> colls = new List<Collider2D>();
-            // ContactFilter2D contactFilter2D = new ContactFilter2D();
-            // contactFilter2D.SetLayerMask(layerMask);
-            // contactFilter2D.useTriggers = true;
-            // Collider2D coll = Physics2D.OverlapBox(tilePosition, new Vector2(.95f, .95f), 0f, layerMask);
-            // if (coll != null) {
-            //     return false;
-            // }
         }
         return true;
     }
@@ -207,7 +202,7 @@ public class Board : MonoBehaviour {
     private bool IsLineFull(int row) {
 
         for (int col = 0; col < grid.GetLength(0); col++) {
-            if (grid[col, row] == null) {
+            if (grid[col, row] == null || (int)grid[col, row].localEulerAngles.z % 90 != 0) {
                 return false;
             }
         }
@@ -232,13 +227,29 @@ public class Board : MonoBehaviour {
             for (int col = 0; col < grid.GetLength(1); col++) {
                 if (grid[row, col] != null) {
                     Gizmos.color = Color.green;
-                } else {
+                }
+                else {
                     Gizmos.color = Color.red;
                 }
-                Gizmos.DrawCube(new Vector3(row - 4.5f, col - 9.5f), new Vector2(.9f, .9f));
+                Gizmos.DrawCube(new Vector3(row - gridOffset.x + .5f, col - gridOffset.y + .5f), new Vector2(.9f, .9f));
             }
         }
+        // Gizmos.color = Color.blue;
+
+        // foreach (Vector3 v in checks) {
+        //     Gizmos.DrawCube(new Vector3(v.x - gridOffset.x + .5f, v.y - gridOffset.y + .5f), new Vector2(.9f, .9f));
+
+        // }
+        // for (int row = minX; row < maxX; row++) {
+        //     for (int col = minY; col < maxY; col++) {
+        //         Gizmos.color = Color.green;
+
+        //         Gizmos.DrawCube(new Vector3(row - 4.5f, col - 9.5f), new Vector2(.9f, .9f));
+
+        //     }
+        // }
     }
+
 
     // private void OnDrawGizmos() {
 

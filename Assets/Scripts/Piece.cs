@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piece : MonoBehaviour {
+public class Piece : MonoBehaviour
+{
     public Board board { get; private set; }
     public TetrominoData data { get; private set; }
     public Vector3Int position;
@@ -30,9 +31,12 @@ public class Piece : MonoBehaviour {
     public GameObject pieceRef;
     private int namecount = 0;
 
-    public Vector3 gridAlignOffset = new Vector3(.5f,.5f,0f);
+    public Vector3 gridAlignOffset = new Vector3(.5f, .5f, 0f);
 
-    [SerializeField, Range(0,360)] private int rotateDegree=90;
+    [SerializeField, Range(0, 360)] private int rotateDegree = 90;
+
+    public List<Vector2Int> occupiedCells = new List<Vector2Int>();
+
 
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
@@ -43,21 +47,18 @@ public class Piece : MonoBehaviour {
         stepTime = Time.time + stepDelay;
         moveTime = Time.time + moveDelay;
         lockTime = 0;
-
-        if (cells == null) {
-            cells = new Vector3Int[data.cells.Length];
-        }
-
-        for (int i = 0; i < cells.Length; i++) {
-            cells[i] = (Vector3Int)data.cells[i];
-        }
+        occupiedCells.Clear();
 
         pieceRef = Instantiate(data.tetrominoGO, position, Quaternion.identity, tilesParent);
-        pieceRef.name += namecount++;
-        for (int i = 0; i < cells.Length; i++) {
-            pieceRef.transform.GetChild(i).position = position + cells[i] + gridAlignOffset;
+        pieceRef.transform.position = position;
+        pieceRef.name += namecount;
+        for (int i = 0; i < pieceRef.transform.childCount; i++) {
+            pieceRef.transform.GetChild(i).name = namecount + " - " + pieceRef.transform.GetChild(i).name;
+            Vector3Int tilePosition = Vector3Int.RoundToInt(pieceRef.transform.GetChild(i).localPosition + position - gridAlignOffset);
+            Vector2Int gridPos = (Vector2Int)tilePosition + board.gridOffset;
+            occupiedCells.Add(gridPos);
         }
-
+        namecount++;
     }
 
     private void Update() {
@@ -69,7 +70,8 @@ public class Piece : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Q)) {
             Rotate(-1);
-        } else if (Input.GetKeyDown(KeyCode.E)) {
+        }
+        else if (Input.GetKeyDown(KeyCode.E)) {
             Rotate(1);
         }
 
@@ -93,6 +95,7 @@ public class Piece : MonoBehaviour {
         board.SetPiece(this);
     }
 
+
     private void HandleMoveInputs() {
 
         if (Input.GetKey(KeyCode.S)) {
@@ -103,7 +106,8 @@ public class Piece : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A)) {
             Move(Vector2Int.left);
-        } else if (Input.GetKey(KeyCode.D)) {
+        }
+        else if (Input.GetKey(KeyCode.D)) {
             Move(Vector2Int.right);
         }
     }
@@ -114,11 +118,16 @@ public class Piece : MonoBehaviour {
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        bool isValid = board.IsValidPositionC(this, newPosition);
+        bool isValid = board.IsValidPosition(this, newPosition, translation);
         if (isValid) {
             position = newPosition;
             moveTime = Time.time + moveDelay;
             lockTime = 0;
+
+            for (int i = 0; i < occupiedCells.Count; i++) {
+                occupiedCells[i] += translation;
+            }
+
         }
 
         return isValid;
@@ -127,10 +136,13 @@ public class Piece : MonoBehaviour {
     private void Rotate(int direction) {
         int originalRotation = rotationIdx;
         rotationIdx = Wrap(rotationIdx + direction, 0, 4);
+        if (!CanRotate(direction))
+            return;
 
         ApplyRotationMatrix(direction);
 
-        if (!TestWallKicks(rotationIdx, direction)) {
+        //if (!TestWallKicks(rotationIdx, direction))        
+        if (!board.IsValidPosition(this, position, Vector2Int.zero)) {
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
@@ -145,17 +157,45 @@ public class Piece : MonoBehaviour {
         }
     }
 
-    private bool TestWallKicks(int rotationIndex, int rotationDirection) {
-        int wallKickIdx = GetWallKickIndex(rotationIndex, rotationDirection);
+    //private bool TestWallKicks(int rotationIndex, int rotationDirection) {
+    //    int wallKickIdx = GetWallKickIndex(rotationIndex, rotationDirection);
 
-        for (int i = 0; i < data.wallKicks.GetLength(1); i++) {
-            Vector2Int translation = data.wallKicks[wallKickIdx, i];
+    //    for (int i = 0; i < data.wallKicks.GetLength(1); i++) {
+    //        Vector2Int translation = data.wallKicks[wallKickIdx, i];
 
-            if (Move(translation))
-                return true;
+    //        if (Move(translation))
+    //            return true;
+    //    }
+
+    //    return false;
+    //}
+
+    private bool CanRotate(int direction) {
+        GameObject go = Instantiate(pieceRef);
+        Vector3 pivot = go.transform.position + gridAlignOffset;
+
+        for (int i = 0; i < pieceRef.transform.childCount; i++) {
+            Transform c = go.transform.GetChild(i);
+            switch (data.tetromino) {
+                case Tetromino.I:
+                case Tetromino.O:
+                c.RotateAround((pivot + gridAlignOffset), Vector3.forward, direction * -rotateDegree);
+                break;
+                default:
+                c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
+                break;
+            }
+        }
+        List<Vector2Int> cells = UpdateOccupiedCells(go);
+        Vector3Int posInt = new Vector3Int((int)go.transform.position.x, (int)go.transform.position.y, (int)go.transform.position.z);
+        if (!IsValidRotation(go, posInt, Vector2Int.zero, cells)) {
+
+            DestroyImmediate(go);
+            return false;
         }
 
-        return false;
+        DestroyImmediate(go);
+        return true;
     }
 
     private int GetWallKickIndex(int rotationIndex, int rotationDirection) {
@@ -171,38 +211,31 @@ public class Piece : MonoBehaviour {
     private void ApplyRotationMatrix(int direction) {
         Vector3 pivot = pieceRef.transform.position + gridAlignOffset;
 
-        for (int i = 0; i < cells.Length; i++) {
+        for (int i = 0; i < pieceRef.transform.childCount; i++) {
             Transform c = pieceRef.transform.GetChild(i);
-            Vector3 cell = cells[i];
-            int x, y;
-            // float xf, yf;
             switch (data.tetromino) {
                 case Tetromino.I:
                 case Tetromino.O:
-                    cell.x -= .5f;
-                    cell.y -= .5f;
-                    x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
-                    y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
-                    c.RotateAround((pivot+gridAlignOffset)/*new Vector3(cel.x + .5f, cel.y + .5f)*/, Vector3.forward, direction * -rotateDegree);
-                    // xf = pieceRef.transform.GetChild(i).localPosition.x;
-                    // yf = pieceRef.transform.GetChild(i).localPosition.y;
-                    break;
+                c.RotateAround((pivot + gridAlignOffset), Vector3.forward, direction * -rotateDegree);
+                break;
                 default:
-                    x = Mathf.RoundToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
-                    y = Mathf.RoundToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
-                    c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
-                    // xf = pieceRef.transform.GetChild(i).localPosition.x;
-                    // yf = pieceRef.transform.GetChild(i).localPosition.y;
-                    break;
+                c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
+                break;
             }
-            cells[i] = new Vector3Int(x, y);
         }
+    }
+
+    private void HardDrop() {
+        while (Move(Vector2Int.down)) {
+            continue;
+        }
+        Lock();
     }
 
     private void Lock() {
 
         pieceRef.layer = LayerMask.NameToLayer("Placed");
-        for (int i = 0; i < cells.Length; i++) {
+        for (int i = 0; i < pieceRef.transform.childCount; i++) {
             pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
         }
 
@@ -211,27 +244,100 @@ public class Piece : MonoBehaviour {
         board.SpawnPiece();
     }
 
-    private void HardDrop() {
-        while (Move(Vector2Int.down)) {
-            continue;
-        }
-
-        Lock();
-    }
-
     public void Reset() {
         for (int i = tilesParent.childCount - 2; i >= 0; i--) {
             Destroy(tilesParent.GetChild(i).gameObject);
         }
     }
 
+    public List<Vector2Int> UpdateOccupiedCells() {
+        List<Vector2Int> oldOccupiedCells = new List<Vector2Int>();
+        foreach (var c in occupiedCells) {
+            oldOccupiedCells.Add(new Vector2Int(c.x, c.y));
+        }
+        occupiedCells.Clear();
+        for (int i = 0; i < pieceRef.transform.childCount; i++) {
+            Vector3Int tileNewPosition = Vector3Int.RoundToInt(pieceRef.transform.GetChild(i).position - gridAlignOffset);
+            Vector2Int gridNewPos = (Vector2Int)tileNewPosition + board.gridOffset;
+
+            board.SetGridPiece(gridNewPos, pieceRef.transform.GetChild(i), (pieceRef.transform.GetChild(i).position), pieceRef.transform.GetChild(i).GetComponent<BoxCollider2D>().size);
+        }
+        return oldOccupiedCells;
+    }
+    public List<Vector2Int> UpdateOccupiedCells(GameObject go) {
+        List<Vector2Int> oldOccupiedCells = new List<Vector2Int>();
+
+        for (int i = 0; i < go.transform.childCount; i++) {
+            Vector3Int tileNewPosition = Vector3Int.RoundToInt(go.transform.GetChild(i).position - gridAlignOffset);
+            Vector2Int gridNewPos = (Vector2Int)tileNewPosition + board.gridOffset;
+
+            SetGridPiece(gridNewPos, go.transform.GetChild(i), (go.transform.GetChild(i).position), pieceRef.transform.GetChild(i).GetComponent<BoxCollider2D>().size, ref oldOccupiedCells);
+        }
+        return oldOccupiedCells;
+    }
+    public void SetGridPiece(Vector2Int centerPosition, Transform subPiece, Vector3 position, Vector2 size, ref List<Vector2Int> occCells) {
+        int minX = centerPosition.x - 1;
+        int maxX = centerPosition.x + 2;
+        int minY = centerPosition.y - 1;
+        int maxY = centerPosition.y + 2;
+        for (int row = minX; row < maxX; row++) {
+            for (int col = minY; col < maxY; col++) {
+                Vector2 pos = new Vector2(row, col) - board.gridOffset + new Vector2(.5f, .5f);
+
+                Bounds b1 = new Bounds(pos, new Vector2(.95f, .95f));
+                Bounds b2 = new Bounds(position, size);
+
+                if (b1.Intersects(b2)) {
+                    if (!occCells.Contains(new Vector2Int(row, col)))
+                        occCells.Add(new Vector2Int(row, col));
+                }
+            }
+        }
+    }
 
 
     private int Wrap(int input, int min, int max) {
         if (input < min) {
             return max - (min - input) % (max - min);
-        } else {
+        }
+        else {
             return min + (input - min) % (max - min);
+        }
+    }
+
+    public bool IsValidRotation(GameObject piece, Vector3Int position, Vector2Int translation, List<Vector2Int> cells) {
+
+        for (int i = 0; i < piece.transform.childCount; i++) {
+
+            Vector3Int tilePosition = Vector3Int.RoundToInt(piece.transform.GetChild(i).localPosition + position - gridAlignOffset);
+
+            if (!board.Bounds.Contains((Vector2Int)tilePosition)) {
+                return false;
+            }
+
+        }
+
+        foreach (Vector2Int pos in cells) {
+
+            Vector3Int tilePosition = new Vector3Int(pos.x + translation.x - board.gridOffset.x, pos.y + translation.y - board.gridOffset.y);
+
+            if (!board.Bounds.Contains((Vector2Int)tilePosition)) {
+                return false;
+            }
+
+            Vector2Int gridNewPos = pos + translation;
+
+            if (board.grid[gridNewPos.x, gridNewPos.y] != null && board.grid[gridNewPos.x, gridNewPos.y].gameObject.layer != LayerMask.NameToLayer("Moving"))
+                return false;
+
+        }
+        return true;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        foreach (var c in occupiedCells) {
+            Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
         }
     }
 }
