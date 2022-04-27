@@ -63,6 +63,11 @@ public class Board : MonoBehaviour
         SpawnPiece();
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+    }
+
     public void SpawnPiece() {
         int random = nextPiece;
         nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length - 1);
