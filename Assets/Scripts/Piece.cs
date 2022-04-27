@@ -17,10 +17,12 @@ public class Piece : MonoBehaviour
 
     public float stepDelay = 1f;
     [SerializeField] private float moveDelay = .1f;
+    [SerializeField] private float rotateDelay = .5f;
     [SerializeField] private float lockDelay = .5f;
 
     private float stepTime;
     private float moveTime;
+    private float rotateTime;
     private float lockTime;
 
     [SerializeField] private float incrementStep = .1f;
@@ -42,6 +44,8 @@ public class Piece : MonoBehaviour
 
     public TMP_Text rotationText;
 
+    public List<Vector3> pivots = new List<Vector3>();
+
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
         board = _board;
@@ -50,6 +54,7 @@ public class Piece : MonoBehaviour
         rotationIdx = 0;
         stepTime = Time.time + stepDelay;
         moveTime = Time.time + moveDelay;
+        rotateTime = Time.time + rotateDelay;
         lockTime = 0;
         occupiedCells.Clear();
 
@@ -72,10 +77,10 @@ public class Piece : MonoBehaviour
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Q) && Time.time > moveTime) {
+        if (Input.GetKey(KeyCode.Q) && Time.time > rotateTime) {
             Rotate(-1);
         }
-        else if (Input.GetKey(KeyCode.E) && Time.time > moveTime) {
+        else if (Input.GetKey(KeyCode.E) && Time.time > rotateTime) {
             Rotate(1);
         }
 
@@ -152,6 +157,7 @@ public class Piece : MonoBehaviour
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
+        rotateTime = Time.time + rotateDelay;
     }
 
     private void Step() {
@@ -215,17 +221,19 @@ public class Piece : MonoBehaviour
     }
 
     private void ApplyRotationMatrix(int direction) {
-        Vector3 pivot = pieceRef.transform.position + gridAlignOffset;
-
+        Vector3 pivot = pieceRef.transform.position + gridAlignOffset*4;
+        pivots.Clear();
         for (int i = 0; i < pieceRef.transform.childCount; i++) {
             Transform c = pieceRef.transform.GetChild(i);
             switch (data.tetromino) {
                 case Tetromino.I:
                 case Tetromino.O:
-                c.RotateAround((pivot + gridAlignOffset), Vector3.forward, direction * -rotateDegree);
+                c.RotateAround(pivot + gridAlignOffset * 4, Vector3.forward, direction * -rotateDegree);
+                pivots.Add(pivot + gridAlignOffset * 4);
                 break;
                 default:
                 c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
+                pivots.Add(pivot);
                 break;
             }
         }
@@ -344,10 +352,15 @@ public class Piece : MonoBehaviour
         rotationText.text = (int)pieceRef.transform.GetChild(0).eulerAngles.z + "°";
     }
 
-    //private void OnDrawGizmosSelected() {
-    //    Gizmos.color = Color.blue;
-    //    foreach (var c in occupiedCells) {
-    //        Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
-    //    }
-    //}
+    private void OnDrawGizmosSelected() {
+        //Gizmos.color = Color.blue;
+        //foreach (var c in occupiedCells) {
+        //    Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
+        //}
+
+        Gizmos.color = Color.blue;
+        foreach (var c in pivots) {
+            Gizmos.DrawCube(new Vector3(c.x, c.y), new Vector2(.9f, .9f));
+        }
+    }
 }

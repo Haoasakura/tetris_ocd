@@ -152,12 +152,14 @@ public class Board : MonoBehaviour
             }
         }
 
+        List<Transform> alreadyMoved = new List<Transform>();
         while (row < (grid.GetLength(1) - 1)) {
             for (int col = 0; col < grid.GetLength(0); col++) {
-                if (grid[col, (row + 1)] != null) {
+                if (grid[col, (row + 1)] != null /*&& !alreadyMoved.Contains(grid[col,row])*/) {
                     grid[col, row] = grid[col, (row + 1)];
                     grid[col, (row + 1)] = null;
                     grid[col, row].localPosition += Vector3Int.down;
+                    alreadyMoved.Add(grid[col, row]);
                 }
             }
             row++;

@@ -676,6 +676,7 @@ MonoBehaviour:
   initialStepDelay: 1
   stepDelay: 1
   moveDelay: 0.1
+  rotateDelay: 0.5
   lockDelay: 0.3
   incrementStep: 0.1
   incrementInterval: 10
@@ -686,6 +687,7 @@ MonoBehaviour:
   rotateDegree: 90
   occupiedCells: []
   rotationText: {fileID: 1061510364}
+  pivots: []
 --- !u!1 &1005094184
 GameObject:
   m_ObjectHideFlags: 0
