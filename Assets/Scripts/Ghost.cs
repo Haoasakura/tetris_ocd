@@ -12,6 +12,7 @@ public class Ghost : MonoBehaviour {
     public Vector3Int[] cells { get; private set; }
     public Vector3Int position;
 
+    /*
     private void Awake() {
         tilemap = GetComponentInChildren<Tilemap>();
         cells = new Vector3Int[4];
@@ -64,4 +65,5 @@ public class Ghost : MonoBehaviour {
             tilemap.SetTile(tilePosition, tile);
         }
     }
+    */
 }

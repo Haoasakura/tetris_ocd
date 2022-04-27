@@ -8,8 +8,8 @@ public class Piece : MonoBehaviour
 {
     public Board board { get; private set; }
     public TetrominoData data { get; private set; }
-    public Vector3Int position;
-    public Vector3Int[] cells { get; private set; }
+    [HideInInspector] public Vector3Int position;
+    //public Vector3Int[] cells { get; private set; }
 
     private int rotationIdx;
 
@@ -29,22 +29,21 @@ public class Piece : MonoBehaviour
     [SerializeField] private float incrementInterval = 5f;
     private float incrementTime = 0f;
 
-    [SerializeField] GameObject aPiece;
-
     public Transform tilesParent;
-    public GameObject pieceRef;
+    [HideInInspector] public GameObject pieceRef;
     private int namecount = 0;
 
     public Vector3 gridAlignOffset = new Vector3(.5f, .5f, 0f);
 
     [SerializeField, Range(0, 360)] private int rotateDegree = 90;
 
-    public List<Vector2Int> occupiedCells = new List<Vector2Int>();
+    [HideInInspector] public List<Vector2Int> occupiedCells = new List<Vector2Int>();
 
+    [Header("UI")]
 
     public TMP_Text rotationText;
 
-    public List<Vector3> pivots = new List<Vector3>();
+    //public List<Vector3> pivots = new List<Vector3>();
 
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
@@ -72,7 +71,7 @@ public class Piece : MonoBehaviour
 
     private void Update() {
 
-        board.ClearPiece(this);
+        board.ClearPiece(/*this*/);
 
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
@@ -101,7 +100,7 @@ public class Piece : MonoBehaviour
             incrementTime = 0;
         }
 
-        board.SetPiece(this);
+        board.SetPiece(/*this*/);
 
         UpdateUI();
     }
@@ -129,7 +128,7 @@ public class Piece : MonoBehaviour
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        bool isValid = board.IsValidPosition(this, newPosition, translation);
+        bool isValid = board.IsValidPosition(/*this, */newPosition, translation);
         if (isValid) {
             position = newPosition;
             moveTime = Time.time + moveDelay;
@@ -153,7 +152,7 @@ public class Piece : MonoBehaviour
         ApplyRotationMatrix(direction);
 
         //if (!TestWallKicks(rotationIdx, direction))        
-        if (!board.IsValidPosition(this, position, Vector2Int.zero)) {
+        if (!board.IsValidPosition(/*this, */position, Vector2Int.zero)) {
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
@@ -222,18 +221,18 @@ public class Piece : MonoBehaviour
 
     private void ApplyRotationMatrix(int direction) {
         Vector3 pivot = pieceRef.transform.position + gridAlignOffset*4;
-        pivots.Clear();
+        //pivots.Clear();
         for (int i = 0; i < pieceRef.transform.childCount; i++) {
             Transform c = pieceRef.transform.GetChild(i);
             switch (data.tetromino) {
                 case Tetromino.I:
                 case Tetromino.O:
                 c.RotateAround(pivot + gridAlignOffset * 4, Vector3.forward, direction * -rotateDegree);
-                pivots.Add(pivot + gridAlignOffset * 4);
+                //pivots.Add(pivot + gridAlignOffset * 4);
                 break;
                 default:
                 c.RotateAround(pivot, Vector3.forward, direction * -rotateDegree);
-                pivots.Add(pivot);
+                //pivots.Add(pivot);
                 break;
             }
         }
@@ -253,7 +252,7 @@ public class Piece : MonoBehaviour
             pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
         }
 
-        board.SetPiece(this);
+        board.SetPiece(/*this*/);
         board.ClearLines();
         board.SpawnPiece();
     }
@@ -349,18 +348,18 @@ public class Piece : MonoBehaviour
     }
 
     private void UpdateUI() {
-        rotationText.text = (int)pieceRef.transform.GetChild(0).eulerAngles.z + "°";
+        rotationText.text = Mathf.CeilToInt(pieceRef.transform.GetChild(0).eulerAngles.z) + "°";
     }
 
-    private void OnDrawGizmosSelected() {
-        //Gizmos.color = Color.blue;
-        //foreach (var c in occupiedCells) {
-        //    Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
-        //}
+    //private void OnDrawGizmosSelected() {
+    //    //Gizmos.color = Color.blue;
+    //    //foreach (var c in occupiedCells) {
+    //    //    Gizmos.DrawCube(new Vector3(c.x - board.gridOffset.x + .5f, c.y - board.gridOffset.y + .5f), new Vector2(.9f, .9f));
+    //    //}
 
-        Gizmos.color = Color.blue;
-        foreach (var c in pivots) {
-            Gizmos.DrawCube(new Vector3(c.x, c.y), new Vector2(.9f, .9f));
-        }
-    }
+    //    Gizmos.color = Color.blue;
+    //    foreach (var c in pivots) {
+    //        Gizmos.DrawCube(new Vector3(c.x, c.y), new Vector2(.9f, .9f));
+    //    }
+    //}
 }
