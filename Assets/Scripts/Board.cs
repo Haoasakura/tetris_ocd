@@ -145,7 +145,6 @@ public class Board : MonoBehaviour
                 row++;
             }
         }
-        rotatedPieceToClear.Sort();
     }
 
     private void LineClear(int row) {
@@ -156,13 +155,14 @@ public class Board : MonoBehaviour
                 grid[col, row] = null;
             }
         }
+
         rotatedPieceToClear.Clear();
         while (row < (grid.GetLength(1) - 1)) {
             for (int col = 0; col < grid.GetLength(0); col++) {
                 if (grid[col, row + 1] != null) {
                     grid[col, row] = grid[col, (row + 1)];
                     grid[col, (row + 1)] = null;
-                    if ((int)grid[col, row].localEulerAngles.z % 90 == 0)
+                    if (Mathf.RoundToInt(grid[col, row].localEulerAngles.z) % 90 == 0)
                         grid[col, row].localPosition += Vector3Int.down;
                     else if (!rotatedPieceToClear.Contains(grid[col, row].parent))
                         rotatedPieceToClear.Add(grid[col, row].parent);
@@ -170,9 +170,9 @@ public class Board : MonoBehaviour
             }
             row++;
         }
-        foreach (var c in rotatedPieceToClear) {
-            for (int i = 0; i < c.childCount; i++) {
-                c.GetChild(i).localPosition += Vector3Int.down;
+        foreach (var p in rotatedPieceToClear) {
+            for (int i = 0; i < p.childCount; i++) {
+                p.GetChild(i).localPosition += Vector3Int.down;
             }
         }
     }
@@ -215,7 +215,7 @@ public class Board : MonoBehaviour
     private bool IsLineFull(int row) {
 
         for (int col = 0; col < grid.GetLength(0); col++) {
-            if (grid[col, row] == null || (int)grid[col, row].localEulerAngles.z % 90 != 0) {
+            if (grid[col, row] == null || Mathf.RoundToInt(grid[col, row].localEulerAngles.z) % 90 != 0) {
                 return false;
             }
         }

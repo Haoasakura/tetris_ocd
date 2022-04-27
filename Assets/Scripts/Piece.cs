@@ -348,7 +348,7 @@ public class Piece : MonoBehaviour
     }
 
     private void UpdateUI() {
-        rotationText.text = Mathf.CeilToInt(pieceRef.transform.GetChild(0).eulerAngles.z) + "°";
+        rotationText.text = Mathf.RoundToInt(pieceRef.transform.GetChild(0).eulerAngles.z) + "°";
     }
 
     //private void OnDrawGizmosSelected() {
