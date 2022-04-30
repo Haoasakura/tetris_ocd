@@ -189,7 +189,7 @@ public class Board : MonoBehaviour
         piece.Reset();
     }
 
-    public bool IsValidPosition(/Vector3Int position, Vector2Int translation) {
+    public bool IsValidPosition(Vector3Int position, Vector2Int translation) {
 
         for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
 
