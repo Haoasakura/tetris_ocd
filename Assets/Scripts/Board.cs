@@ -77,15 +77,15 @@ public class Board : MonoBehaviour
         //nextTetromino = nextData.tetromino.ToString();
         piece.Initialize(this, spawnPosition, data);
 
-        if (IsValidPosition(/*piece, */spawnPosition, Vector2Int.zero)) {
-            SetPiece(/*piece*/);
+        if (IsValidPosition(spawnPosition, Vector2Int.zero)) {
+            SetPiece();
         }
         else {
             GameOver();
         }
     }
 
-    public void SetPiece(/*Piece piece*/) {
+    public void SetPiece() {
         piece.occupiedCells.Clear();
         piece.pieceRef.transform.position = piece.position;
         for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
@@ -117,7 +117,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void ClearPiece(/*Piece piece*/) {
+    public void ClearPiece() {
         for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
             Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).position - piece.gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tilePosition + gridOffset;
@@ -189,7 +189,7 @@ public class Board : MonoBehaviour
         piece.Reset();
     }
 
-    public bool IsValidPosition(/*Piece piece, */Vector3Int position, Vector2Int translation) {
+    public bool IsValidPosition(/Vector3Int position, Vector2Int translation) {
 
         for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
 

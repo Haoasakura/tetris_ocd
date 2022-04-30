@@ -71,7 +71,7 @@ public class Piece : MonoBehaviour
 
     private void Update() {
 
-        board.ClearPiece(/*this*/);
+        board.ClearPiece();
 
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
@@ -100,7 +100,7 @@ public class Piece : MonoBehaviour
             incrementTime = 0;
         }
 
-        board.SetPiece(/*this*/);
+        board.SetPiece();
 
         UpdateUI();
     }
@@ -128,7 +128,7 @@ public class Piece : MonoBehaviour
         newPosition.x += translation.x;
         newPosition.y += translation.y;
 
-        bool isValid = board.IsValidPosition(/*this, */newPosition, translation);
+        bool isValid = board.IsValidPosition(newPosition, translation);
         if (isValid) {
             position = newPosition;
             moveTime = Time.time + moveDelay;
@@ -152,7 +152,7 @@ public class Piece : MonoBehaviour
         ApplyRotationMatrix(direction);
 
         //if (!TestWallKicks(rotationIdx, direction))        
-        if (!board.IsValidPosition(/*this, */position, Vector2Int.zero)) {
+        if (!board.IsValidPosition(position, Vector2Int.zero)) {
             rotationIdx = originalRotation;
             ApplyRotationMatrix(-direction);
         }
@@ -209,15 +209,15 @@ public class Piece : MonoBehaviour
         return true;
     }
 
-    private int GetWallKickIndex(int rotationIndex, int rotationDirection) {
-        int wallKickIdx = rotationIndex * 2;
+    //private int GetWallKickIndex(int rotationIndex, int rotationDirection) {
+    //    int wallKickIdx = rotationIndex * 2;
 
-        if (rotationDirection < 0) {
-            wallKickIdx--;
-        }
+    //    if (rotationDirection < 0) {
+    //        wallKickIdx--;
+    //    }
 
-        return Wrap(wallKickIdx, 0, data.wallKicks.GetLength(0));
-    }
+    //    return Wrap(wallKickIdx, 0, data.wallKicks.GetLength(0));
+    //}
 
     private void ApplyRotationMatrix(int direction) {
         Vector3 pivot = pieceRef.transform.position + gridAlignOffset*4;
@@ -252,7 +252,7 @@ public class Piece : MonoBehaviour
             pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
         }
 
-        board.SetPiece(/*this*/);
+        board.SetPiece();
         board.ClearLines();
         board.SpawnPiece();
     }
@@ -284,11 +284,11 @@ public class Piece : MonoBehaviour
             Vector3Int tileNewPosition = Vector3Int.RoundToInt(go.transform.GetChild(i).position - gridAlignOffset);
             Vector2Int gridNewPos = (Vector2Int)tileNewPosition + board.gridOffset;
 
-            SetGridPiece(gridNewPos, go.transform.GetChild(i), (go.transform.GetChild(i).position), pieceRef.transform.GetChild(i).GetComponent<BoxCollider2D>().size, ref oldOccupiedCells);
+            SetGridPiece(gridNewPos, (go.transform.GetChild(i).position), pieceRef.transform.GetChild(i).GetComponent<BoxCollider2D>().size, ref oldOccupiedCells);
         }
         return oldOccupiedCells;
     }
-    public void SetGridPiece(Vector2Int centerPosition, Transform subPiece, Vector3 position, Vector2 size, ref List<Vector2Int> occCells) {
+    public void SetGridPiece(Vector2Int centerPosition, Vector3 position, Vector2 size, ref List<Vector2Int> occCells) {
         int minX = centerPosition.x - 1;
         int maxX = centerPosition.x + 2;
         int minY = centerPosition.y - 1;
@@ -345,6 +345,30 @@ public class Piece : MonoBehaviour
 
         }
         return true;
+    }
+
+    public void ButtonRotate(int direction) {
+        if (Time.time > rotateTime) {
+            Rotate((int)Mathf.Sign(direction));
+        }
+    }
+
+    public void ButtonMoveInput (int value) {
+        if (Time.time > moveTime) {
+
+            if (value==0) {
+                if (Move(Vector2Int.down)) {
+                    stepTime = Time.time + stepDelay;
+                }
+            }
+
+            if (value == -1) {
+                Move(Vector2Int.left);
+            }
+            else if (value == 1) {
+                Move(Vector2Int.right);
+            }
+        }
     }
 
     private void UpdateUI() {
