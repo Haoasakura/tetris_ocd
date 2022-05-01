@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 64bdc13619329544d91074bccde8f1e1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cartograph CF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c210547c1c7957b41a9293c86387924d, type: 3}
+  - {fileID: 12800000, guid: d1e9e8d13926ef548a47a594b4390a35, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
