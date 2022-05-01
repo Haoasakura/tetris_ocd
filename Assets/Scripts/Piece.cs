@@ -250,6 +250,7 @@ public class Piece : MonoBehaviour
         pieceRef.layer = LayerMask.NameToLayer("Placed");
         for (int i = 0; i < pieceRef.transform.childCount; i++) {
             pieceRef.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Placed");
+            pieceRef.transform.GetChild(i).GetComponent<SubPiece>().SetPlacedSprite();
         }
 
         board.SetPiece();
