@@ -67,6 +67,10 @@ public class Piece : MonoBehaviour
             occupiedCells.Add(gridPos);
         }
         namecount++;
+        int oldRot = rotateDegree;
+        rotateDegree = Random.Range(0, 180)*2;
+        Rotate(Random.Range(-1f, +1f) > 0 ? +1 : -1);
+        rotateDegree = oldRot;
     }
 
     private void Update() {

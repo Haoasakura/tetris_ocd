@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetrominoes: {fileID: 11400000, guid: a62690fbb03bb3b41ae5b0447dc2b52f, type: 2}
-  spawnPosition: {x: -4, y: 32, z: 0}
+  spawnPosition: {x: -4, y: 24, z: 0}
   size: {x: 40, y: 80}
   boardSize: {x: 40, y: 80}
   layerMask:
