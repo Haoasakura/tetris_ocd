@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor;
+using UnityEngine.UI;
 using UnityEngine;
 //using UnityEngine.Tilemaps;
 
@@ -27,6 +27,8 @@ public class Board : MonoBehaviour
     [SerializeField] public Vector2Int gridOffset;
 
     private List<Transform> rotatedPieceToClear = new List<Transform>();
+
+    public Image nextPiecePreview;
 
 
     public RectInt Bounds {
@@ -74,6 +76,7 @@ public class Board : MonoBehaviour
 
         TetrominoData data = tetrominoes.tetrominoesData[random];
         TetrominoData nextData = tetrominoes.tetrominoesData[nextPiece];
+        nextPiecePreview.sprite = nextData.tetrominoPreview;
         //nextTetromino = nextData.tetromino.ToString();
         piece.Initialize(this, spawnPosition, data);
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public enum Tetromino
 {
@@ -12,6 +13,7 @@ public struct TetrominoData
     public Tile tile;
     public Tetromino tetromino;
     public GameObject tetrominoGO;
+    public Sprite tetrominoPreview;
 
     public Vector2Int[] cells { get; private set; }
     public Vector2Int[,] wallKicks { get; private set; }
