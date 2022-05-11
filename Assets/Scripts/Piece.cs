@@ -41,7 +41,7 @@ public class Piece : MonoBehaviour
 
     [Header("UI")]
 
-    public TMP_Text rotationText;
+    [SerializeField] private TMP_Text rotationText;
 
     //public List<Vector3> pivots = new List<Vector3>();
 
@@ -101,7 +101,7 @@ public class Piece : MonoBehaviour
 
         if (incrementTime >= incrementInterval) {
             stepDelay = Mathf.Max(0.1f, stepDelay - incrementStep);
-            rotateDelay = Mathf.Max(0f, rotateDelay - (incrementStep / 5f));
+            rotateDelay = Mathf.Max(0.03f, rotateDelay - (incrementStep / 5f));
             incrementTime = 0;
         }
 

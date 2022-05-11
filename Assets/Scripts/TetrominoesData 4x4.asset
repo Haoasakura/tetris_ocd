@@ -16,28 +16,28 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 0
     tetrominoGO: {fileID: 8044903930172599583, guid: 8d6c0898a6ab2c0409d0609ca9dcaa1f, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 9398807ee3b123145aafc417d6da6246, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 2cc37e980bb4ba54ba5e5ef4042469dd, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 1
     tetrominoGO: {fileID: 6625351320986872514, guid: d3deecb7208d78b488bd6908a34295be, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 266d361ef5fc4594baa4caeaf7adc31b, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: aa9c244e2c9895e48a7c50f7aa599799, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 2
     tetrominoGO: {fileID: 2408096819834322447, guid: 76beb833cb599e14b89ce527dc400920, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 022ca63564124ef4a955e5903a5da14f, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 2d17127c19d885449aa5a878963ff3a3, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 3
     tetrominoGO: {fileID: 797237865574421885, guid: bb56fc7617c7d9f48bcf61002c68dede, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 6bfd6d47d80f1dc44a6c0dfaff214cca, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 929402e55c116874cbb0e1abca291083, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 4
     tetrominoGO: {fileID: 2350977070860460539, guid: 7a96f3b810383ce48bedf70e18b8bb41, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 266d361ef5fc4594baa4caeaf7adc31b, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 22b0799120ad62c4783692ecc541d933, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 5
     tetrominoGO: {fileID: 2933173427553296400, guid: f5feff735f4959547b970762d9c5607d, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 73309deee7bf4694394d2ea0523988ac, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 18ddb21ef755fab4099f2336689a950e, type: 3}
   - tile: {fileID: 11400000, guid: 49253ac8120a92c4cbefbc2fd88631f7, type: 2}
     tetromino: 6
     tetrominoGO: {fileID: 1215999802144340832, guid: 75c0291da0480dd4db7a249ec3d87c5a, type: 3}
-    tetrominoPreview: {fileID: 21300000, guid: 022ca63564124ef4a955e5903a5da14f, type: 3}
+    tetrominoPreview: {fileID: 21300000, guid: 2c1fa1e87e7c3ef43840efb5d44148d7, type: 3}

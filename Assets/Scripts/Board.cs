@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-//using UnityEngine.Tilemaps;
+using TMPro;
 
 public class Board : MonoBehaviour
 {
@@ -28,7 +28,16 @@ public class Board : MonoBehaviour
 
     private List<Transform> rotatedPieceToClear = new List<Transform>();
 
-    public Image nextPiecePreview;
+    [SerializeField] private int score = 0;
+    [SerializeField] private int scoreIncrement = 1000;
+
+    [Header("UI")]
+    [SerializeField ]private Image nextPiecePreview;
+
+    [SerializeField ] private TMP_Text scoreText;
+
+
+
 
 
     public RectInt Bounds {
@@ -45,6 +54,9 @@ public class Board : MonoBehaviour
 
         boardSize = size;
         grid = new Transform[size.x, size.y];
+
+        score = 0;
+        scoreText.text = score.ToString();
 
         //tilemap = GetComponentInChildren<Tilemap>();
         piece = GetComponentInChildren<Piece>();
@@ -148,6 +160,8 @@ public class Board : MonoBehaviour
         while (row < grid.GetLength(1)) {
             if (IsLineFull(row)) {
                 LineClear(row);
+                score += (scoreIncrement/4);
+                scoreText.text = score.ToString();
             }
             else {
                 row++;
@@ -189,6 +203,8 @@ public class Board : MonoBehaviour
         //tilemap.ClearAllTiles();
         //frozenRows = 0;
         piece.stepDelay = piece.initialStepDelay;
+        score = 0;
+        scoreText.text = score.ToString();
         piece.Reset();
     }
 
