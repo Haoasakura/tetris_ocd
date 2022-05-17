@@ -25,6 +25,9 @@ public class Piece : MonoBehaviour
     private float rotateTime;
     private float lockTime;
 
+    private float _stepDelay;
+    private float _rotateDelay;
+
     [SerializeField] private float incrementStep = .1f;
     [SerializeField] private float incrementInterval = 5f;
     private float incrementTime = 0f;
@@ -45,6 +48,12 @@ public class Piece : MonoBehaviour
 
     //public List<Vector3> pivots = new List<Vector3>();
 
+    private bool hardDropPressed = false;
+
+    private void Awake() {
+        _stepDelay = stepDelay;
+        _rotateDelay = rotateDelay;
+    }
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
         board = _board;
@@ -68,7 +77,7 @@ public class Piece : MonoBehaviour
         }
         namecount++;
         int oldRot = rotateDegree;
-        rotateDegree = Random.Range(0, 180)*2;
+        rotateDegree = Random.Range(0, 180) * 2;
         Rotate(Random.Range(-1f, +1f) > 0 ? +1 : -1);
         rotateDegree = oldRot;
     }
@@ -87,8 +96,9 @@ public class Piece : MonoBehaviour
             Rotate(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) || hardDropPressed) {
             HardDrop();
+            hardDropPressed = false;
         }
 
         if (Time.time > moveTime) {
@@ -225,7 +235,7 @@ public class Piece : MonoBehaviour
     //}
 
     private void ApplyRotationMatrix(int direction) {
-        Vector3 pivot = pieceRef.transform.position + gridAlignOffset*4;
+        Vector3 pivot = pieceRef.transform.position + gridAlignOffset * 4;
         //pivots.Clear();
         for (int i = 0; i < pieceRef.transform.childCount; i++) {
             Transform c = pieceRef.transform.GetChild(i);
@@ -267,6 +277,8 @@ public class Piece : MonoBehaviour
         for (int i = tilesParent.childCount - 2; i >= 0; i--) {
             Destroy(tilesParent.GetChild(i).gameObject);
         }
+        stepDelay = _stepDelay;
+        rotateDelay = _rotateDelay;
     }
 
     public List<Vector2Int> UpdateOccupiedCells() {
@@ -359,10 +371,10 @@ public class Piece : MonoBehaviour
         }
     }
 
-    public void ButtonMoveInput (int value) {
+    public void ButtonMoveInput(int value) {
         if (Time.time > moveTime) {
 
-            if (value==0) {
+            if (value == 0) {
                 if (Move(Vector2Int.down)) {
                     stepTime = Time.time + stepDelay;
                 }
@@ -375,6 +387,10 @@ public class Piece : MonoBehaviour
                 Move(Vector2Int.right);
             }
         }
+    }
+
+    public void ButtonHardDrop() {
+        hardDropPressed = true;
     }
 
     private void UpdateUI() {
