@@ -18,7 +18,6 @@ public class Board : MonoBehaviour
 
     private int nextPiece;
 
-    //[SerializeField] private string nextTetromino; //temp
     //[SerializeField] private int frozenRows = 0;
 
     public LayerMask layerMask;
@@ -32,10 +31,13 @@ public class Board : MonoBehaviour
     [SerializeField] private int scoreIncrement = 1000;
 
     [Header("UI")]
+
     [SerializeField] private Image nextPiecePreview;
-
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject gameOverPanel;
 
+    [SerializeField] private GameObject LineClearParticleSystem;
+    private GameObject _particleInstance;
 
     public RectInt Bounds {
         get {
@@ -55,7 +57,6 @@ public class Board : MonoBehaviour
         score = 0;
         scoreText.text = score.ToString();
 
-        //tilemap = GetComponentInChildren<Tilemap>();
         piece = GetComponentInChildren<Piece>();
 
 
@@ -86,7 +87,6 @@ public class Board : MonoBehaviour
         TetrominoData data = tetrominoes.tetrominoesData[random];
         TetrominoData nextData = tetrominoes.tetrominoesData[nextPiece];
         nextPiecePreview.sprite = nextData.tetrominoPreview;
-        //nextTetromino = nextData.tetromino.ToString();
         piece.Initialize(this, spawnPosition, data);
 
         if (IsValidPosition(spawnPosition, Vector2Int.zero)) {
@@ -154,12 +154,16 @@ public class Board : MonoBehaviour
     public void ClearLines() {
         int row = 0;
         bool clearedLines = false;
+        int countrows = 0;
         while (row < grid.GetLength(1)) {
             if (IsLineFull(row)) {
                 LineClear(row);
                 score += (scoreIncrement / 4);
                 scoreText.text = score.ToString();
                 clearedLines = true;
+                if (countrows++ % 4==0)
+                    _particleInstance =Instantiate(LineClearParticleSystem, new Vector3(0,Bounds.yMin+row+2,0), LineClearParticleSystem.transform.rotation);
+
             }
             else {
                 row++;
@@ -167,7 +171,7 @@ public class Board : MonoBehaviour
         }
         if (clearedLines) {
             StopCoroutine("WaitLineClear");
-            StartCoroutine("WaitLineClear",.5f);
+            StartCoroutine("WaitLineClear", .5f);
         }
     }
 
@@ -204,10 +208,22 @@ public class Board : MonoBehaviour
     private void GameOver() {
         //tilemap.ClearAllTiles();
         //frozenRows = 0;
-        piece.stepDelay = piece.initialStepDelay;
+
+        //open GameOverPanel
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        piece.pieceRef.SetActive(false);
+        //pause game
+        //piece.Reset();
+    }
+
+    public void NewGame() {
+        gameOverPanel.SetActive(false);
         score = 0;
         scoreText.text = score.ToString();
         piece.Reset();
+        piece.pieceRef.SetActive(true);
+        Time.timeScale = 1f;
     }
 
     public bool IsValidPosition(Vector3Int position, Vector2Int translation) {
@@ -250,7 +266,9 @@ public class Board : MonoBehaviour
 
     IEnumerator WaitLineClear(float waitTime) {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(waitTime); ;
+        //Instantiate(LineClearParticleSystem, piece.pieceRef.transform.position, LineClearParticleSystem.transform.rotation);
+        yield return new WaitForSecondsRealtime(waitTime);
+        Destroy(_particleInstance);
         Time.timeScale = 1;
 
     }

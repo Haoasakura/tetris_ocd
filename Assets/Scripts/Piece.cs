@@ -13,8 +13,6 @@ public class Piece : MonoBehaviour
 
     private int rotationIdx;
 
-    public float initialStepDelay = 1f;
-
     public float stepDelay = 1f;
     [SerializeField] private float moveDelay = .1f;
     [SerializeField] private float rotateDelay = .5f;
@@ -47,9 +45,6 @@ public class Piece : MonoBehaviour
     [SerializeField] private TMP_Text rotationText;
     [SerializeField] private TMP_Text levelText;
 
-
-    //public List<Vector3> pivots = new List<Vector3>();
-
     private bool hardDropPressed = false;
 
     [SerializeField] private int level = 1;
@@ -65,9 +60,6 @@ public class Piece : MonoBehaviour
     private void Awake() {
         _stepDelay = stepDelay;
         _rotateDelay = rotateDelay;
-
-        //leftMoveButton.OnPointerDown(delegate { ButtonMoveInput(-1); });
-        //leftMoveButton.oncli
     }
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
