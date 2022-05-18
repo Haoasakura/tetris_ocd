@@ -153,16 +153,21 @@ public class Board : MonoBehaviour
 
     public void ClearLines() {
         int row = 0;
-
+        bool clearedLines = false;
         while (row < grid.GetLength(1)) {
             if (IsLineFull(row)) {
                 LineClear(row);
                 score += (scoreIncrement / 4);
                 scoreText.text = score.ToString();
+                clearedLines = true;
             }
             else {
                 row++;
             }
+        }
+        if (clearedLines) {
+            StopCoroutine("WaitLineClear");
+            StartCoroutine("WaitLineClear",.5f);
         }
     }
 
@@ -241,6 +246,13 @@ public class Board : MonoBehaviour
             }
         }
         return true;
+    }
+
+    IEnumerator WaitLineClear(float waitTime) {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(waitTime); ;
+        Time.timeScale = 1;
+
     }
 
     //public void Freeze(int rowsToFreeze) {
