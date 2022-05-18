@@ -45,14 +45,29 @@ public class Piece : MonoBehaviour
     [Header("UI")]
 
     [SerializeField] private TMP_Text rotationText;
+    [SerializeField] private TMP_Text levelText;
+
 
     //public List<Vector3> pivots = new List<Vector3>();
 
     private bool hardDropPressed = false;
 
+    [SerializeField] private int level = 1;
+
+
+    [Header("Buttons")]
+
+    [SerializeField] private bool leftMoveButton;
+    [SerializeField] private bool rightMoveButton;
+    [SerializeField] private bool leftRotationButton;
+    [SerializeField] private bool rightRotationButton;
+
     private void Awake() {
         _stepDelay = stepDelay;
         _rotateDelay = rotateDelay;
+
+        //leftMoveButton.OnPointerDown(delegate { ButtonMoveInput(-1); });
+        //leftMoveButton.oncli
     }
     public void Initialize(Board _board, Vector3Int _position, TetrominoData _data) {
 
@@ -89,10 +104,10 @@ public class Piece : MonoBehaviour
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Q) && Time.time > rotateTime) {
+        if ((Input.GetKey(KeyCode.Q) || leftRotationButton) && Time.time > rotateTime) {
             Rotate(-1);
         }
-        else if (Input.GetKey(KeyCode.E) && Time.time > rotateTime) {
+        else if ((Input.GetKey(KeyCode.E) || rightRotationButton) && Time.time > rotateTime) {
             Rotate(1);
         }
 
@@ -113,6 +128,7 @@ public class Piece : MonoBehaviour
             stepDelay = Mathf.Max(0.1f, stepDelay - incrementStep);
             rotateDelay = Mathf.Max(0.03f, rotateDelay - (incrementStep / 5f));
             incrementTime = 0;
+            level++;
         }
 
         board.SetPiece();
@@ -129,10 +145,10 @@ public class Piece : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.A)) {
+        if (Input.GetKey(KeyCode.A) || leftMoveButton) {
             Move(Vector2Int.left);
         }
-        else if (Input.GetKey(KeyCode.D)) {
+        else if (Input.GetKey(KeyCode.D) || rightMoveButton) {
             Move(Vector2Int.right);
         }
     }
@@ -279,6 +295,7 @@ public class Piece : MonoBehaviour
         }
         stepDelay = _stepDelay;
         rotateDelay = _rotateDelay;
+        level = 1;
     }
 
     public List<Vector2Int> UpdateOccupiedCells() {
@@ -365,36 +382,52 @@ public class Piece : MonoBehaviour
         return true;
     }
 
-    public void ButtonRotate(int direction) {
-        if (Time.time > rotateTime) {
-            Rotate((int)Mathf.Sign(direction));
-        }
+    //public void ButtonRotate(int direction) {
+    //    if (Time.time > rotateTime) {
+    //        Rotate((int)Mathf.Sign(direction));
+    //    }
+    //}
+
+    //public void ButtonMoveInput(int value) {
+    //    if (Time.time > moveTime) {
+
+    //        if (value == 0) {
+    //            if (Move(Vector2Int.down)) {
+    //                stepTime = Time.time + stepDelay;
+    //            }
+    //        }
+
+    //        if (value == -1) {
+    //            Move(Vector2Int.left);
+    //        }
+    //        else if (value == 1) {
+    //            Move(Vector2Int.right);
+    //        }
+    //    }
+    //}
+
+
+    public void ButtonMoveLeftInput(bool value) {
+        leftMoveButton = value;
     }
-
-    public void ButtonMoveInput(int value) {
-        if (Time.time > moveTime) {
-
-            if (value == 0) {
-                if (Move(Vector2Int.down)) {
-                    stepTime = Time.time + stepDelay;
-                }
-            }
-
-            if (value == -1) {
-                Move(Vector2Int.left);
-            }
-            else if (value == 1) {
-                Move(Vector2Int.right);
-            }
-        }
+    public void ButtonMoveRightInput(bool value) {
+        rightMoveButton = value;
+    }
+    public void ButtonRotateLeftInput(bool value) {
+        leftRotationButton = value;
+    }
+    public void ButtonRotateRightInput(bool value) {
+        rightRotationButton = value;
     }
 
     public void ButtonHardDrop() {
         hardDropPressed = true;
     }
 
+
     private void UpdateUI() {
         rotationText.text = Mathf.RoundToInt(pieceRef.transform.GetChild(0).eulerAngles.z) + "°";
+        levelText.text = level.ToString();
     }
 
     //private void OnDrawGizmosSelected() {

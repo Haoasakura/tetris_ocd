@@ -1517,13 +1517,19 @@ MonoBehaviour:
   rotateDelay: 0.2
   lockDelay: 0.3
   incrementStep: 0.1
-  incrementInterval: 10
+  incrementInterval: 20
   tilesParent: {fileID: 1462074149}
   pieceRef: {fileID: 0}
   gridAlignOffset: {x: 0.5, y: 0.5, z: 0}
   rotateDegree: 2
   occupiedCells: []
   rotationText: {fileID: 1061510364}
+  levelText: {fileID: 423054883}
+  level: 1
+  leftMoveButton: 0
+  rightMoveButton: 0
+  leftRotationButton: 0
+  rightRotationButton: 0
 --- !u!1 &983776365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1542,7 @@ GameObject:
   - component: {fileID: 983776369}
   - component: {fileID: 983776368}
   - component: {fileID: 983776367}
+  - component: {fileID: 983776370}
   m_Layer: 5
   m_Name: ButtonDX
   m_TagString: Untagged
@@ -1657,6 +1664,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983776365}
   m_CullTransparentMesh: 1
+--- !u!114 &983776370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983776365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonMoveRightInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonMoveRightInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1005094184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2209,7 @@ GameObject:
   - component: {fileID: 1136169101}
   - component: {fileID: 1136169100}
   - component: {fileID: 1136169099}
+  - component: {fileID: 1136169102}
   m_Layer: 5
   m_Name: ButtonRotDX
   m_TagString: Untagged
@@ -2279,6 +2332,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136169097}
   m_CullTransparentMesh: 1
+--- !u!114 &1136169102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136169097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonRotateRightInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonRotateRightInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1141127853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,7 +2769,7 @@ RectTransform:
   m_GameObject: {fileID: 1360744520}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1444982494}
@@ -2684,7 +2782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -2, y: 144.40002}
+  m_AnchoredPosition: {x: 0, y: 138}
   m_SizeDelta: {x: 688, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360744522
@@ -2885,6 +2983,7 @@ GameObject:
   - component: {fileID: 1444982497}
   - component: {fileID: 1444982496}
   - component: {fileID: 1444982495}
+  - component: {fileID: 1444982498}
   m_Layer: 5
   m_Name: ButtonSX
   m_TagString: Untagged
@@ -2955,19 +3054,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1444982496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 932286616}
-        m_TargetAssemblyTypeName: Piece, Assembly-CSharp
-        m_MethodName: ButtonMoveInput
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1444982496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3006,6 +3093,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444982493}
   m_CullTransparentMesh: 1
+--- !u!114 &1444982498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444982493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonMoveLeftInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonMoveLeftInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1462074148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,7 +3247,7 @@ Transform:
   m_GameObject: {fileID: 1497595966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -2, z: 14.2}
-  m_LocalScale: {x: 16.43084, y: 12.9006, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3782,6 +3914,7 @@ GameObject:
   - component: {fileID: 1967367248}
   - component: {fileID: 1967367247}
   - component: {fileID: 1967367246}
+  - component: {fileID: 1967367249}
   m_Layer: 5
   m_Name: ButtonRotSX
   m_TagString: Untagged
@@ -3904,6 +4037,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967367244}
   m_CullTransparentMesh: 1
+--- !u!114 &1967367249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967367244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonRotateLeftInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 932286616}
+          m_TargetAssemblyTypeName: Piece, Assembly-CSharp
+          m_MethodName: ButtonRotateLeftInput
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1975176802
 GameObject:
   m_ObjectHideFlags: 0

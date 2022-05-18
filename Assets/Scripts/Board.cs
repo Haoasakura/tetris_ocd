@@ -32,12 +32,9 @@ public class Board : MonoBehaviour
     [SerializeField] private int scoreIncrement = 1000;
 
     [Header("UI")]
-    [SerializeField ]private Image nextPiecePreview;
+    [SerializeField] private Image nextPiecePreview;
 
-    [SerializeField ] private TMP_Text scoreText;
-
-
-
+    [SerializeField] private TMP_Text scoreText;
 
 
     public RectInt Bounds {
@@ -160,7 +157,7 @@ public class Board : MonoBehaviour
         while (row < grid.GetLength(1)) {
             if (IsLineFull(row)) {
                 LineClear(row);
-                score += (scoreIncrement/4);
+                score += (scoreIncrement / 4);
                 scoreText.text = score.ToString();
             }
             else {
