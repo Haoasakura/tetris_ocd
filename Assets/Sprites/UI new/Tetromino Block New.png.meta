@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f90ce79c432a08d40ac6ec638978bf5d
+guid: 07522a4ff1d7a684787bb0c93d0a9033
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tetromino Block_0
+      name: Tetromino Block New_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 795b09c0935cf734aad3937fc7d592cb
-      internalID: 534434364
+      spriteID: bc1bf337f55560b40955f5861eed7294
+      internalID: 359930657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_1
+      name: Tetromino Block New_1
       rect:
         serializedVersion: 2
         x: 544
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2edcfeacf74961b4cb83fff975f51e2b
-      internalID: -626044786
+      spriteID: a3538991ffbb0994cba666f276418ce0
+      internalID: 1277145718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_2
+      name: Tetromino Block New_2
       rect:
         serializedVersion: 2
         x: 1088
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a977e32989fb3e849ba8b6e7fb953906
-      internalID: 818354432
+      spriteID: 180644545e4773148a72a71194db157e
+      internalID: -1825307223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_3
+      name: Tetromino Block New_3
       rect:
         serializedVersion: 2
         x: 1632
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26defedb0ad16f94689289707324d1d6
-      internalID: 1481706035
+      spriteID: 5f209b29fe6738c4ea33d9ddff2ccf2a
+      internalID: -1516220681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_4
+      name: Tetromino Block New_4
       rect:
         serializedVersion: 2
         x: 0
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9df886709bdc4c148bc1f6e59301a448
-      internalID: -422356451
+      spriteID: da57da44815e21f48961a6385733582f
+      internalID: -1832092236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_5
+      name: Tetromino Block New_5
       rect:
         serializedVersion: 2
         x: 544
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d219176c685193447b1d481b8ca74e3a
-      internalID: 1988570732
+      spriteID: 2f649619f56578f48b8d9ec241cb56a5
+      internalID: 1559576193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_6
+      name: Tetromino Block New_6
       rect:
         serializedVersion: 2
         x: 1088
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4abc1bfef8bad4468551cc4073521e7
-      internalID: 1590394191
+      spriteID: 43c53ed9f2ba2a44f81a06c586c3b0bd
+      internalID: -1515668632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_7
+      name: Tetromino Block New_7
       rect:
         serializedVersion: 2
         x: 1632
@@ -277,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b488e64853524642b0503cfd978823d
-      internalID: -1429072261
+      spriteID: 0e6372f4861332a4187b998930389f78
+      internalID: -1545358506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_8
+      name: Tetromino Block New_8
       rect:
         serializedVersion: 2
         x: 0
@@ -298,14 +298,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7f4180fbd8fba243b7ea130d3547f42
-      internalID: 1927153311
+      spriteID: f67e8962449150a4290321fa991a7a58
+      internalID: 1064325388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_9
+      name: Tetromino Block New_9
       rect:
         serializedVersion: 2
         x: 544
@@ -319,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb68a9f7b149fa9499de20634a2bce4e
-      internalID: 977293197
+      spriteID: 549b8706b2c61be4daba5073d159ba02
+      internalID: 1175461598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_10
+      name: Tetromino Block New_10
       rect:
         serializedVersion: 2
         x: 1088
@@ -340,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00844029555e11c4aaee46873b0373a9
-      internalID: 1091823628
+      spriteID: e0d86e42faaab114298db1dd7f90fdfe
+      internalID: -1384130276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_11
+      name: Tetromino Block New_11
       rect:
         serializedVersion: 2
         x: 1632
@@ -361,14 +361,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b706b7959097554fbfe84987d05eb3d
-      internalID: 636642061
+      spriteID: 0971e4b2e5da6564097dd82d9ad6a875
+      internalID: 2062891079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_12
+      name: Tetromino Block New_12
       rect:
         serializedVersion: 2
         x: 0
@@ -382,14 +382,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b78db3be695ae9f4bb251859830c8ece
-      internalID: 32840558
+      spriteID: fbe69f7225fe0c344b13f7baddf88630
+      internalID: 1399448920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_13
+      name: Tetromino Block New_13
       rect:
         serializedVersion: 2
         x: 544
@@ -403,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50aafc0f93d9da640af106336c7e3532
-      internalID: -378064354
+      spriteID: e5e111bd70210984483724c2263a3528
+      internalID: -890869289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_14
+      name: Tetromino Block New_14
       rect:
         serializedVersion: 2
         x: 1088
@@ -424,14 +424,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e22ce2d2d859307468e30afae82a9ce7
-      internalID: 662763851
+      spriteID: 6e427434477e7f149a5664e4b236bbde
+      internalID: -1698495788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tetromino Block_15
+      name: Tetromino Block New_15
       rect:
         serializedVersion: 2
         x: 1632
@@ -445,8 +445,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c799586639b7c24eb76190060ebe741
-      internalID: -647667438
+      spriteID: b187109217b65814ca5d731d56d5ada8
+      internalID: -588697001
       vertices: []
       indices: 
       edges: []
@@ -462,22 +462,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tetromino Block_0: 534434364
-      Tetromino Block_13: -378064354
-      Tetromino Block_8: 1927153311
-      Tetromino Block_5: 1988570732
-      Tetromino Block_11: 636642061
-      Tetromino Block_6: 1590394191
-      Tetromino Block_4: -422356451
-      Tetromino Block_1: -626044786
-      Tetromino Block_9: 977293197
-      Tetromino Block_12: 32840558
-      Tetromino Block_2: 818354432
-      Tetromino Block_14: 662763851
-      Tetromino Block_15: -647667438
-      Tetromino Block_10: 1091823628
-      Tetromino Block_3: 1481706035
-      Tetromino Block_7: -1429072261
+      Tetromino Block New_15: -588697001
+      Tetromino Block New_5: 1559576193
+      Tetromino Block New_3: -1516220681
+      Tetromino Block New_6: -1515668632
+      Tetromino Block New_11: 2062891079
+      Tetromino Block New_1: 1277145718
+      Tetromino Block New_2: -1825307223
+      Tetromino Block New_10: -1384130276
+      Tetromino Block New_7: -1545358506
+      Tetromino Block New_8: 1064325388
+      Tetromino Block New_0: 359930657
+      Tetromino Block New_4: -1832092236
+      Tetromino Block New_12: 1399448920
+      Tetromino Block New_14: -1698495788
+      Tetromino Block New_13: -890869289
+      Tetromino Block New_9: 1175461598
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
