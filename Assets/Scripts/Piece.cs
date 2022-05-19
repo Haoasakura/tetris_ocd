@@ -96,24 +96,26 @@ public class Piece : MonoBehaviour
         lockTime += Time.deltaTime;
         incrementTime += Time.deltaTime;
 
-        if ((Input.GetKey(KeyCode.Q) || leftRotationButton) && Time.time > rotateTime) {
-            Rotate(-1);
-        }
-        else if ((Input.GetKey(KeyCode.E) || rightRotationButton) && Time.time > rotateTime) {
-            Rotate(1);
-        }
+        if (!board.isPaused) {
+            if ((Input.GetKey(KeyCode.Q) || leftRotationButton) && Time.time > rotateTime) {
+                Rotate(-1);
+            }
+            else if ((Input.GetKey(KeyCode.E) || rightRotationButton) && Time.time > rotateTime) {
+                Rotate(1);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) || hardDropPressed) {
-            HardDrop();
-            hardDropPressed = false;
-        }
+            if (Input.GetKeyDown(KeyCode.Space) || hardDropPressed) {
+                HardDrop();
+                hardDropPressed = false;
+            }
 
-        if (Time.time > moveTime) {
-            HandleMoveInputs();
-        }
+            if (Time.time > moveTime) {
+                HandleMoveInputs();
+            }
 
-        if (Time.time >= stepTime) {
-            Step();
+            if (Time.time >= stepTime) {
+                Step();
+            }
         }
 
         if (incrementTime >= incrementInterval) {

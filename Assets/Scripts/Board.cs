@@ -35,9 +35,12 @@ public class Board : MonoBehaviour
     [SerializeField] private Image nextPiecePreview;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject pausePanel;
 
     [SerializeField] private GameObject LineClearParticleSystem;
     private GameObject _particleInstance;
+
+    public bool isPaused = false;
 
     public RectInt Bounds {
         get {
@@ -78,6 +81,8 @@ public class Board : MonoBehaviour
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+        if (Input.GetKeyDown(KeyCode.P))
+            Pause(!isPaused);
     }
 
     public void SpawnPiece() {
@@ -224,6 +229,18 @@ public class Board : MonoBehaviour
         piece.Reset();
         piece.pieceRef.SetActive(true);
         Time.timeScale = 1f;
+    }
+
+    public void Pause(bool value) {
+        if (value) {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else {
+            Time.timeScale = 1f;
+            pausePanel.SetActive(false);
+        }
+        isPaused = value;
     }
 
     public bool IsValidPosition(Vector3Int position, Vector2Int translation) {
