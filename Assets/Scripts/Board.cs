@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Board : MonoBehaviour
@@ -80,7 +81,7 @@ public class Board : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
+            SceneManager.LoadScene(0);
         if (Input.GetKeyDown(KeyCode.P))
             Pause(!isPaused);
     }
