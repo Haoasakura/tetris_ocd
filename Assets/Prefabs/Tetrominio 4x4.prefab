@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &162306174628481614
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &224797013509120443
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &302809958882034569
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &589443659644322615
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &600624861938822736
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &943868977421800390
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &995047060766500417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &1263648582666172373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &1540629613644137541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &1744502581941645842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2028415450503332617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2211577990921388799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2305446556817302528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2362472580044672058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,7 +1889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2693916197476598444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2813700244924825175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,7 +2141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &2815949035513020937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3108292391884741133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3109390519235379590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3272881566589125484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,7 +2645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3579754621720615048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,7 +2771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3603804231628911252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3721982955268450843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,7 +3023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3836157886988654702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,7 +3149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &3950305408228757436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,7 +3275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &4197779376341969713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &4246932794451476178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,7 +3635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &4324717861238082740
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,7 +3761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &4699572802858702730
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,7 +3887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5058507960719328049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,7 +4013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5234024114064331391
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,7 +4139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5238833262021034031
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,7 +4265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5440266378918166443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5667343882570191967
 GameObject:
   m_ObjectHideFlags: 0
@@ -4517,7 +4517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5741639822652245561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4643,7 +4643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5749464200092816894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5788883193285827287
 GameObject:
   m_ObjectHideFlags: 0
@@ -4895,7 +4895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5929163138921009600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5021,7 +5021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &5941474187871033344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,7 +5147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6041409110813720179
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,7 +5273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6439933104784378322
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,7 +5399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6502175254809514027
 GameObject:
   m_ObjectHideFlags: 0
@@ -5525,7 +5525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6550475087800248594
 GameObject:
   m_ObjectHideFlags: 0
@@ -5651,7 +5651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6567271962234036871
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,7 +5777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6574419810716314731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5903,7 +5903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6734851579947128600
 GameObject:
   m_ObjectHideFlags: 0
@@ -6029,7 +6029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6736288108705689672
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,7 +6155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &6977371340302704240
 GameObject:
   m_ObjectHideFlags: 0
@@ -6281,7 +6281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7223461691243421790
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,7 +6407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7278855527958716562
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,7 +6533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7368972374930752929
 GameObject:
   m_ObjectHideFlags: 0
@@ -6659,7 +6659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7458699582676392869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,7 +6785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7715490433629838958
 GameObject:
   m_ObjectHideFlags: 0
@@ -6911,7 +6911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &7978512286765748603
 GameObject:
   m_ObjectHideFlags: 0
@@ -7037,7 +7037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8224910430903972309
 GameObject:
   m_ObjectHideFlags: 0
@@ -7163,7 +7163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8226910588345839845
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,7 +7289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8308113213762049387
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,7 +7415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8344080198528429677
 GameObject:
   m_ObjectHideFlags: 0
@@ -7541,7 +7541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8425998325840705557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7667,7 +7667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8457486254277779970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7793,7 +7793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8700694285706053925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7919,7 +7919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8795951428691952531
 GameObject:
   m_ObjectHideFlags: 0
@@ -8045,7 +8045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
 --- !u!1 &8859551102460644407
 GameObject:
   m_ObjectHideFlags: 0
@@ -8171,4 +8171,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSprite: {fileID: 0}
-  movingColor: {r: 0, g: 1, b: 0.49803925, a: 1}
+  movingColor: {r: 0, g: 0.9529412, b: 0.42352942, a: 1}
