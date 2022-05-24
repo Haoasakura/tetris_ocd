@@ -3454,7 +3454,7 @@ MonoBehaviour:
   unmuteButton: {fileID: 1820576842}
   rotationText: {fileID: 1061510362}
   LineClearParticleSystem: {fileID: 6633593356117455399, guid: 0743766463fbe8b43beee8a25f5feb6b, type: 3}
-  isPaused: 1
+  isPaused: 0
 --- !u!114 &932286616
 MonoBehaviour:
   m_ObjectHideFlags: 0

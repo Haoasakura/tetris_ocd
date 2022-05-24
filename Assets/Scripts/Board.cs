@@ -83,6 +83,9 @@ public class Board : MonoBehaviour
     private void Start() {
         nextPiece = Random.Range(0, tetrominoes.tetrominoesData.Length - 1);
         SpawnPiece();
+        Pause(true);
+        piece.pieceRef.SetActive(false);
+
     }
 
     private void Update() {
@@ -251,6 +254,9 @@ public class Board : MonoBehaviour
             Time.timeScale = 0f;
             pauseButton.SetActive(false);
             resumeButton.SetActive(true);
+            if (!piece.pieceRef.gameObject.activeInHierarchy)
+                piece.pieceRef.SetActive(true); 
+        
         }
         else {
             Time.timeScale = 1f;
