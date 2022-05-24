@@ -290,6 +290,7 @@ public class Piece : MonoBehaviour
         stepDelay = _stepDelay;
         rotateDelay = _rotateDelay;
         level = 1;
+        UpdateUI();
     }
 
     public List<Vector2Int> UpdateOccupiedCells() {

@@ -33,10 +33,16 @@ public class Board : MonoBehaviour
 
     [Header("UI")]
 
+    [SerializeField] private GameObject nextPieceGO;
     [SerializeField] private Image nextPiecePreview;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject welcomePanel;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject resumeButton;
+    [SerializeField] private GameObject muteButton;
+    [SerializeField] private GameObject unmuteButton;
+    [SerializeField] private GameObject rotationText;
 
     [SerializeField] private GameObject LineClearParticleSystem;
     private GameObject _particleInstance;
@@ -216,6 +222,8 @@ public class Board : MonoBehaviour
         //frozenRows = 0;
 
         //open GameOverPanel
+        nextPieceGO.SetActive(false);
+        rotationText.SetActive(false);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
         piece.pieceRef.SetActive(false);
@@ -224,8 +232,13 @@ public class Board : MonoBehaviour
     }
 
     public void NewGame() {
+        isPaused = false;
+        nextPieceGO.SetActive(true);
+        rotationText.SetActive(true);
         gameOverPanel.SetActive(false);
+        welcomePanel.SetActive(false);
         score = 0;
+        
         scoreText.text = score.ToString();
         piece.Reset();
         piece.pieceRef.SetActive(true);
@@ -234,12 +247,15 @@ public class Board : MonoBehaviour
 
     public void Pause(bool value) {
         if (value) {
-            pausePanel.SetActive(true);
+            //pausePanel.SetActive(true);
             Time.timeScale = 0f;
+            pauseButton.SetActive(false);
+            resumeButton.SetActive(true);
         }
         else {
             Time.timeScale = 1f;
-            pausePanel.SetActive(false);
+            pauseButton.SetActive(true);
+            resumeButton.SetActive(false);
         }
         isPaused = value;
     }
