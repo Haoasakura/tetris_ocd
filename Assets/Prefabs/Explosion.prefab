@@ -1944,7 +1944,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 14
       minScalar: 1
       maxCurve:
         serializedVersion: 2

@@ -120,7 +120,7 @@ public class Piece : MonoBehaviour
 
         if (incrementTime >= incrementInterval) {
             stepDelay = Mathf.Max(0.1f, stepDelay - incrementStep);
-            rotateDelay = Mathf.Max(0.03f, rotateDelay - (incrementStep / 5f));
+            rotateDelay = Mathf.Max(0.05f, rotateDelay - (incrementStep / 5f));
             incrementTime = 0;
             level++;
         }
