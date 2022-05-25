@@ -229,9 +229,7 @@ public class Board : MonoBehaviour
         rotationText.SetActive(false);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
-        piece.pieceRef.SetActive(false);
-        //pause game
-        //piece.Reset();
+        //piece.pieceRef.SetActive(false);
     }
 
     public void NewGame() {
@@ -271,8 +269,9 @@ public class Board : MonoBehaviour
         for (int i = 0; i < piece.pieceRef.transform.childCount; i++) {
 
             Vector3Int tilePosition = Vector3Int.RoundToInt(piece.pieceRef.transform.GetChild(i).localPosition + position - piece.gridAlignOffset);
-
-            if (!Bounds.Contains((Vector2Int)tilePosition)) {
+            RectInt _bounds = Bounds;
+            _bounds.yMax += 8; //the max number of outside bounds on top side for random starting rotation
+            if (!_bounds.Contains((Vector2Int)tilePosition)) {
                 return false;
             }
         }
