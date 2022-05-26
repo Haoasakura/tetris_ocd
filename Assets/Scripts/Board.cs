@@ -40,8 +40,10 @@ public class Board : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject resumeButton;
+    [SerializeField] private TMP_Text pauseText;
     [SerializeField] private GameObject muteButton;
     [SerializeField] private GameObject unmuteButton;
+    [SerializeField] private TMP_Text muteText;
     [SerializeField] private GameObject rotationText;
 
     [SerializeField] private GameObject LineClearParticleSystem;
@@ -228,6 +230,8 @@ public class Board : MonoBehaviour
         nextPieceGO.SetActive(false);
         rotationText.SetActive(false);
         gameOverPanel.SetActive(true);
+        pauseButton.SetActive(false);
+        resumeButton.SetActive(false);
         Time.timeScale = 0f;
         //piece.pieceRef.SetActive(false);
     }
@@ -236,6 +240,7 @@ public class Board : MonoBehaviour
         isPaused = false;
         nextPieceGO.SetActive(true);
         rotationText.SetActive(true);
+        pauseButton.SetActive(true);
         gameOverPanel.SetActive(false);
         welcomePanel.SetActive(false);
         score = 0;
@@ -252,6 +257,7 @@ public class Board : MonoBehaviour
             Time.timeScale = 0f;
             pauseButton.SetActive(false);
             resumeButton.SetActive(true);
+            pauseText.text = "Resume";
             if (!piece.pieceRef.gameObject.activeInHierarchy)
                 piece.pieceRef.SetActive(true); 
         
@@ -260,6 +266,7 @@ public class Board : MonoBehaviour
             Time.timeScale = 1f;
             pauseButton.SetActive(true);
             resumeButton.SetActive(false);
+            pauseText.text = "Pause";
         }
         isPaused = value;
     }
